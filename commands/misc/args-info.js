@@ -4,6 +4,7 @@ module.exports = {
 	args: true,
     cooldown: 5,
     guildOnly: true,
+    aliases: ['test', 'test2'],
 	usage: 'Type command usage here!',
 	execute(message, args) {
 		if (args[0] === 'foo') {

@@ -31,7 +31,10 @@ client.on('message', message => {
 
     // Converts your command to lower case, then !PING == !ping == !pInG
 	const commandName = args.shift().toLowerCase();
-    const command = client.commands.get(commandName);
+    const command = client.commands.get(commandName)
+		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+
+	if (!command) return;
 
     if (command.guildOnly && message.channel.type === 'dm') {
         return message.reply('I can\'t execute that command inside DMs!');
