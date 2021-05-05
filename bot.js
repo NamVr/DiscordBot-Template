@@ -30,7 +30,14 @@ client.on('message', message => {
     // Converts your command to lower case, then !PING == !ping == !pInG
 	const command = args.shift().toLowerCase();
 
-    
+    if (!client.commands.has(command)) return;
+
+	try {
+		client.commands.get(command).execute(message, args);
+	} catch (error) {
+		console.error(error);
+		message.reply('There was an error trying to execute that command! (We will be changing this message later!)');
+	}
 });
 
 // Bot Logins Here
