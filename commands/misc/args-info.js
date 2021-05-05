@@ -6,6 +6,7 @@ module.exports = {
     guildOnly: true,
     aliases: ['test', 'test2'],
 	usage: 'Type command usage here!',
+    permissions: 'MANAGE_MESSAGES',
 	execute(message, args) {
 		if (args[0] === 'foo') {
 			return message.channel.send('bar');
