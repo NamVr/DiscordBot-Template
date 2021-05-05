@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const config = require('./config.json');
 const client = new Discord.Client();
 
 // Ready Event
@@ -15,4 +16,4 @@ client.on('message', message => {
 });
 
 // Bot Logins Here
-client.login('your-token-goes-here');
+client.login(config.token)
