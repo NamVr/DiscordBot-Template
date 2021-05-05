@@ -1,0 +1,22 @@
+{
+  "name": "discordbot-template",
+  "version": "1.0.0",
+  "description": "A modified template based on discordjs.guide to create your own discord-js based bot!",
+  "main": "bot.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NamVr/DiscordBot-Template.git"
+  },
+  "keywords": [
+    "discord-js"
+  ],
+  "author": "Naman Vrati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NamVr/DiscordBot-Template/issues"
+  },
+  "homepage": "https://github.com/NamVr/DiscordBot-Template#readme"
+}

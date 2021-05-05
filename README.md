@@ -1,0 +1,1 @@
+A template for discord.js bots with command handler, error handler based on https://discordjs.guide/
