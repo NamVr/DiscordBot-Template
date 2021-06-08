@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/NamVr/DiscordBot-Template/issues"
   },
-  "homepage": "https://github.com/NamVr/DiscordBot-Template#readme"
+  "homepage": "https://github.com/NamVr/DiscordBot-Template#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  }
 }

@@ -27,4 +27,15 @@ for (const folder of commandFolders) {
 	}
 }
 
+client.npcmds = new Discord.Collection();
+const npcmdsFolders = fs.readdirSync('./npcommands');
+
+for (const folder of npcmdsFolders) {
+	const npcmdsFiles = fs.readdirSync(`./npcommands/${folder}`).filter(file => file.endsWith('.js'));
+	for (const file of npcmdsFiles) {
+		const npcmd = require(`./npcommands/${folder}/${file}`);
+		client.npcmds.set(npcmd.name, npcmd);
+	}
+}
+
 client.login(token);
