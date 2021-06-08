@@ -52,6 +52,3 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2021 [Naman Vrati](https://github.com/NamVr).<br />
 This project is [ISC](https://github.com/NamVr/DiscordBot-Template/blob/master/LICENSE) licensed.
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
