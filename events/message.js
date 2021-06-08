@@ -61,7 +61,7 @@ module.exports = {
         const { cooldowns } = client;
     
         if (!cooldowns.has(command.name)) {
-            cooldowns.set(command.name, new Discord.Collection());
+            cooldowns.set(command.name, new Collection());
         }
     
         const now = Date.now();
