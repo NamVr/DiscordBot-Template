@@ -35,10 +35,10 @@ npm run test
 
 👤 **Naman Vrati**
 
-* Website: https://namanvrati.cf/
-* Twitter: [@namanvrati](https://twitter.com/namanvrati)
-* Github: [@NamVr](https://github.com/NamVr)
-* LinkedIn: [@namanvrati](https://linkedin.com/in/namanvrati)
+- Website: https://namanvrati.cf/
+- Twitter: [@namanvrati](https://twitter.com/namanvrati)
+- Github: [@NamVr](https://github.com/NamVr)
+- LinkedIn: [@namanvrati](https://linkedin.com/in/namanvrati)
 
 ## 🤝 Contributing
 

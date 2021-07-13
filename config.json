@@ -1,5 +1,5 @@
 {
-  "prefix": "!",
-  "token": "your-token-goes-here",
-  "owner": "owner-id-here"
+	"prefix": "!",
+	"token": "your-token-goes-here",
+	"owner": "owner-id-here"
 }

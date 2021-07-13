@@ -3,14 +3,14 @@
 **Table of contents**
 
 - [Contributing](#contributing)
-	- [Submitting a bug report](#submitting-a-bug-report)
-	- [Submitting a feature request](#submitting-a-feature-request)
-	- [Creating a pull request](#creating-a-pull-request)
-		- [Contributing code](#contributing-code)
-		- [Translating](#translating)
-		- [Updating documentation](#updating-documentation)
-			- [Website](#website)
-			- [JSDoc](#jsdoc)
+  - [Submitting a bug report](#submitting-a-bug-report)
+  - [Submitting a feature request](#submitting-a-feature-request)
+  - [Creating a pull request](#creating-a-pull-request)
+    - [Contributing code](#contributing-code)
+    - [Translating](#translating)
+    - [Updating documentation](#updating-documentation)
+      - [Website](#website)
+      - [JSDoc](#jsdoc)
 
 Thank you for considering making a contribution to NamVr.
 
