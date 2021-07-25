@@ -16,6 +16,7 @@
 </p>
 
 > A well made aka modified template based on Official Discord.JS Guide to get started on making your very personal bot!
+> **PLEASE USE RELEASES ALWAYS** ⚠
 
 ### 🏠 [Homepage](https://github.com/NamVr/DiscordBot-Template#readme)
 
