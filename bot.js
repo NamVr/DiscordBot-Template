@@ -31,16 +31,16 @@ for (const folder of commandFolders) {
 	}
 }
 
-client.npcmds = new Discord.Collection();
-const npcmdsFolders = fs.readdirSync("./npcommands");
+client.triggers = new Discord.Collection();
+const triggerFolders = fs.readdirSync("./triggers");
 
-for (const folder of npcmdsFolders) {
-	const npcmdsFiles = fs
-		.readdirSync(`./npcommands/${folder}`)
+for (const folder of triggerFolders) {
+	const triggerFiles = fs
+		.readdirSync(`./triggers/${folder}`)
 		.filter((file) => file.endsWith(".js"));
-	for (const file of npcmdsFiles) {
-		const npcmd = require(`./npcommands/${folder}/${file}`);
-		client.npcmds.set(npcmd.name, npcmd);
+	for (const file of triggerFiles) {
+		const trigger = require(`./triggers/${folder}/${file}`);
+		client.triggers.set(trigger.name, trigger);
 	}
 }
 

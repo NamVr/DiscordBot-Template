@@ -1,4 +1,4 @@
-const { Collection, MessageEmbed: Embed } = require("discord.js");
+const Discord = require("discord.js");
 const { prefix, owner } = require("../config.json");
 
 const escapeRegex = (string) => {
@@ -71,7 +71,7 @@ module.exports = {
 		const { cooldowns } = client;
 
 		if (!cooldowns.has(command.name)) {
-			cooldowns.set(command.name, new Collection());
+			cooldowns.set(command.name, new Discord.Collection());
 		}
 
 		const now = Date.now();
