@@ -68,13 +68,11 @@ Any code changes should be accompanied by any necessary documentation changes.
 
 **You should install the ESLint extension in your editor** to help you follow the code style.
 
-- Use single quotes
 - Indentation should use tabs not spaces
 - Classes should be named in PascalCase
 - Functions should be named in camelCase
 - Variables and constants should be named in snake_case
 - Use the latest JS features (destructuring, arrow functions etc)
-- Use the British spelling (colour not color), except where it sucks (center not centre)
 
 ### Translating
 
