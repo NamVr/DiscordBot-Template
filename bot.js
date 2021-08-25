@@ -1,47 +1,36 @@
+// Require the necessary discord.js classes
 const fs = require("fs");
-const Discord = require("discord.js");
-const { prefix, token } = require("./config.json");
+const { Client, Collection, Intents } = require("discord.js");
+const { token } = require("./config.json");
 
-const client = new Discord.Client();
+// Create a new client instance
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 const eventFiles = fs
 	.readdirSync("./events")
 	.filter((file) => file.endsWith(".js"));
+
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args, client));
+		client.once(event.name, (...args) => event.execute(...args));
 	} else {
-		client.on(event.name, (...args) => event.execute(...args, client));
+		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
 
-client.commands = new Discord.Collection();
-client.cooldowns = new Discord.Collection();
+// When the client is ready, run this code (only once)
+client.commands = new Collection();
+const commandFiles = fs
+	.readdirSync("./commands")
+	.filter((file) => file.endsWith(".js"));
 
-const commandFolders = fs.readdirSync("./commands");
-
-for (const folder of commandFolders) {
-	const commandFiles = fs
-		.readdirSync(`./commands/${folder}`)
-		.filter((file) => file.endsWith(".js"));
-	for (const file of commandFiles) {
-		const command = require(`./commands/${folder}/${file}`);
-		client.commands.set(command.name, command);
-	}
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	// Set a new item in the Collection
+	// With the key as the command name and the value as the exported module
+	client.commands.set(command.data.name, command);
 }
 
-client.triggers = new Discord.Collection();
-const triggerFolders = fs.readdirSync("./triggers");
-
-for (const folder of triggerFolders) {
-	const triggerFiles = fs
-		.readdirSync(`./triggers/${folder}`)
-		.filter((file) => file.endsWith(".js"));
-	for (const file of triggerFiles) {
-		const trigger = require(`./triggers/${folder}/${file}`);
-		client.triggers.set(trigger.name, trigger);
-	}
-}
-
+// Login to Discord with your client's token
 client.login(token);

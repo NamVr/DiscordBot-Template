@@ -1,6 +1,6 @@
 {
 	"name": "discordbot-template",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"description": "A modified template based on discordjs.guide to create your own discord-js based bot!",
 	"main": "bot.js",
 	"scripts": {
@@ -21,6 +21,9 @@
 	},
 	"homepage": "https://github.com/NamVr/DiscordBot-Template#readme",
 	"dependencies": {
+		"@discordjs/builders": "^0.6.0",
+		"@discordjs/rest": "*",
+		"discord-api-types": "^0.22.0",
 		"discord.js": "^12.5.3"
 	},
 	"devDependencies": {

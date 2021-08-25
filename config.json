@@ -1,5 +1,7 @@
 {
 	"prefix": "!",
 	"token": "your-token-goes-here",
-	"owner": "owner-id-here"
+	"owner": "owner-id-here",
+	"clientId": "123456789012345678",
+	"guildId": "876543210987654321"
 }
