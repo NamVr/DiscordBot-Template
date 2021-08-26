@@ -24,7 +24,14 @@ module.exports = {
 	execute(message, args) {
 		const { commands } = message.client;
 
+		// If there are no args, it means it needs whole help command.
+
 		if (!args.length) {
+			/**
+			 * @type {Object}
+			 * @description Help command embed object
+			 */
+
 			let helpEmbed = new MessageEmbed()
 				.setColor(0x4286f4)
 				.setURL(process.env.URL)
@@ -37,32 +44,61 @@ module.exports = {
 					"Usage",
 					`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`
 				);
+
+			// Attempts to send embed in DMs.
+
 			return message.author
 				.send({ embeds: [helpEmbed] })
 
 				.then(() => {
 					if (message.channel.type === "dm") return;
+
+					// On validation, reply back.
+
 					message.reply({
 						content: "I've sent you a DM with all my commands!",
 					});
 				})
 				.catch((error) => {
+					// On failing, throw error.
+
 					console.error(
 						`Could not send help DM to ${message.author.tag}.\n`,
 						error
 					);
+
 					message.reply({ content: "It seems like I can't DM you!" });
 				});
 		}
 
+		// If argument is provided, check if it's a command.
+
+		/**
+		 * @type {String}
+		 * @description First argument in lower case
+		 */
+
 		const name = args[0].toLowerCase();
+
+		/**
+		 * @type {Object}
+		 * @description The command object
+		 */
+
 		const command =
 			commands.get(name) ||
 			commands.find((c) => c.aliases && c.aliases.includes(name));
 
+		// If it's an invalid command.
+
 		if (!command) {
 			return message.reply({ content: "That's not a valid command!" });
 		}
+
+		/**
+		 * @type {Object}
+		 * @description Embed of Help command for a specific command.
+		 */
 
 		let commandEmbed = new MessageEmbed()
 			.setColor(0x4286f4)
@@ -81,6 +117,9 @@ module.exports = {
 				`\`${prefix}${command.name} ${command.usage}\``,
 				true
 			);
+
+		// Finally send the embed.
+
 		message.channel.send({ embeds: [commandEmbed] });
 	},
 };

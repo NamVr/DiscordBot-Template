@@ -4,8 +4,12 @@
  * @since 1.0.0
  */
 
-const Discord = require("discord.js");
+// Declares constants (destructured) to be used in this file.
+
+const { Collection } = require("discord.js");
 const { prefix, owner } = require("../config.json");
+
+// Prefix regex, we will use to match in mention prefix.
 
 const escapeRegex = (string) => {
 	return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -13,29 +17,67 @@ const escapeRegex = (string) => {
 
 module.exports = {
 	name: "messageCreate",
+
+	/**
+	 * @description Executes when a message is created and handle it.
+	 * @author Naman Vrati
+	 * @param {*} message The message which was created.
+	 */
+
 	async execute(message) {
 		// Declares const to be used.
+
 		const { client, guild, channel, content, author } = message;
 
-		// Converts prefix to lowercase.
+		/**
+		 * @description Converts prefix to lowercase.
+		 * @type {String}
+		 */
+
 		const checkPrefix = prefix.toLowerCase();
 
-		// New: Mention Prefix added.
+		/**
+		 * @description Regex expression for mention prefix
+		 */
+
 		const prefixRegex = new RegExp(
 			`^(<@!?${client.user.id}>|${escapeRegex(checkPrefix)})\\s*`
 		);
+
+		// Checks if message content in lower case starts with bot's mention.
+
 		if (!prefixRegex.test(content.toLowerCase())) return;
 
-		// Real checks goes dynamically.
+		/**
+		 * @description Checks and returned matched prefix, either mention or prefix in config.
+		 */
+
 		const [matchedPrefix] = content.toLowerCase().match(prefixRegex);
+
+		/**
+		 * @type {String[]}
+		 * @description The Message Content of the received message seperated by spaces (' ') in an array, this excludes prefix and command/alias itself.
+		 */
+
 		const args = content.slice(matchedPrefix.length).trim().split(/ +/);
+
+		/**
+		 * @type {String}
+		 * @description Name of the command received from first argument of the args array.
+		 */
+
 		const commandName = args.shift().toLowerCase();
 
 		// Check if mesage does not starts with prefix, or message author is bot. If yes, return.
+
 		if (!message.content.startsWith(matchedPrefix) || message.author.bot)
 			return;
 
-		// Finds the actual command.
+		/**
+		 * @description The message command object.
+		 * @type {Object}
+		 */
+
 		const command =
 			client.commands.get(commandName) ||
 			client.commands.find(
@@ -43,13 +85,17 @@ module.exports = {
 			);
 
 		// It it's not a command, return :)
+
 		if (!command) return;
 
 		// Owner Only Property, add in your command properties if true.
+
 		if (command.ownerOnly && message.author.id !== owner) {
 			return message.reply({ content: "This is a owner only command!" });
 		}
+
 		// Guild Only Property, add in your command properties if true.
+
 		if (command.guildOnly && message.channel.type === "dm") {
 			return message.reply({
 				content: "I can't execute that command inside DMs!",
@@ -57,6 +103,7 @@ module.exports = {
 		}
 
 		// Author perms property
+
 		if (command.permissions) {
 			const authorPerms = message.channel.permissionsFor(message.author);
 			if (!authorPerms || !authorPerms.has(command.permissions)) {
@@ -65,6 +112,7 @@ module.exports = {
 		}
 
 		// Args missing
+
 		if (command.args && !args.length) {
 			let reply = `You didn't provide any arguments, ${message.author}!`;
 
@@ -76,10 +124,11 @@ module.exports = {
 		}
 
 		// Copldowns
+
 		const { cooldowns } = client;
 
 		if (!cooldowns.has(command.name)) {
-			cooldowns.set(command.name, new Discord.Collection());
+			cooldowns.set(command.name, new Collection());
 		}
 
 		const now = Date.now();
@@ -101,6 +150,7 @@ module.exports = {
 
 		timestamps.set(message.author.id, now);
 		setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+
 		// Rest your creativity is below.
 
 		// execute the final command. Put everything above this.
