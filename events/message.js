@@ -1,3 +1,9 @@
+/**
+ * @file Message Handler
+ * @author Naman Vrati
+ * @since 1.0.0
+ */
+
 const Discord = require("discord.js");
 const { prefix, owner } = require("../config.json");
 
@@ -6,7 +12,7 @@ const escapeRegex = (string) => {
 };
 
 module.exports = {
-	name: "message",
+	name: "messageCreate",
 	async execute(message) {
 		// Declares const to be used.
 		const { client, guild, channel, content, author } = message;
@@ -41,18 +47,20 @@ module.exports = {
 
 		// Owner Only Property, add in your command properties if true.
 		if (command.ownerOnly && message.author.id !== owner) {
-			return message.reply("This is a owner only command!");
+			return message.reply({ content: "This is a owner only command!" });
 		}
 		// Guild Only Property, add in your command properties if true.
 		if (command.guildOnly && message.channel.type === "dm") {
-			return message.reply("I can't execute that command inside DMs!");
+			return message.reply({
+				content: "I can't execute that command inside DMs!",
+			});
 		}
 
 		// Author perms property
 		if (command.permissions) {
 			const authorPerms = message.channel.permissionsFor(message.author);
 			if (!authorPerms || !authorPerms.has(command.permissions)) {
-				return message.reply("You can not do this!");
+				return message.reply({ content: "You can not do this!" });
 			}
 		}
 
@@ -64,7 +72,7 @@ module.exports = {
 				reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
 			}
 
-			return message.channel.send(reply);
+			return message.channel.send({ content: reply });
 		}
 
 		// Copldowns
@@ -83,11 +91,11 @@ module.exports = {
 
 			if (now < expirationTime) {
 				const timeLeft = (expirationTime - now) / 1000;
-				return message.reply(
-					`please wait ${timeLeft.toFixed(
+				return message.reply({
+					content: `please wait ${timeLeft.toFixed(
 						1
-					)} more second(s) before reusing the \`${command.name}\` command.`
-				);
+					)} more second(s) before reusing the \`${command.name}\` command.`,
+				});
 			}
 		}
 
@@ -100,7 +108,9 @@ module.exports = {
 			command.execute(message, args);
 		} catch (error) {
 			console.error(error);
-			message.reply("There was an error trying to execute that command!");
+			message.reply({
+				content: "There was an error trying to execute that command!",
+			});
 		}
 	},
 };

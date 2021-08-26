@@ -1,18 +1,38 @@
+/**
+ * @file Main File of the bot, responsible for registering events, commands, interactions etc.
+ * @author Naman Vrati
+ * @version 3.0.0
+ */
+
+// Declare constants which will be used throughout the bot.
+
 const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { prefix, token, client_id, test_guild_id } = require("./config.json");
 
-// From v13, specifying the intents is compulsory.
+/**
+ * From v13, specifying the intents is compulsory.
+ * @type {Object}
+ * @description Main Application Client */
+
 const client = new Client({
 	intents: [Intents.FLAGS.GUILDS],
 });
 
-// Event registration
+// Below we will be making an event handler!
+
+/**
+ * @description All event files of the event handler.
+ * @type {String[]}
+ */
+
 const eventFiles = fs
 	.readdirSync("./events")
 	.filter((file) => file.endsWith(".js"));
+
+// Loop through all files and execute the event when it is actually emmited.
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
@@ -25,12 +45,24 @@ for (const file of eventFiles) {
 	}
 }
 
+// Define Collection of Commands, Slash Commands and cooldowns
+
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.cooldowns = new Collection();
+client.triggers = new Collection();
 
-// Old command registration
+// Registration of Message-Based Commands
+
+/**
+ * @type {String[]}
+ * @description All command categories aka folders.
+ */
+
 const commandFolders = fs.readdirSync("./commands");
+
+// Loop through all files and store commands in commands collection.
+
 for (const folder of commandFolders) {
 	const commandFiles = fs
 		.readdirSync(`./commands/${folder}`)
@@ -41,8 +73,17 @@ for (const folder of commandFolders) {
 	}
 }
 
-// Slash command local registration
+// Registration of Slash-Command Interactions.
+
+/**
+ * @type {String[]}
+ * @description All slash commands.
+ */
+
 const slashCommands = fs.readdirSync("./slashCommands");
+
+// Loop through all files and store slash-commands in slashCommands collection.
+
 for (const module of slashCommands) {
 	const commandFiles = fs
 		.readdirSync(`./slashCommands/${module}`)
@@ -54,7 +95,8 @@ for (const module of slashCommands) {
 	}
 }
 
-// Slash command api registration
+// Registration of Slash-Commands in Discord API
+
 const rest = new REST({ version: "9" }).setToken(token);
 
 const commandJsonData = Array.from(client.slashCommands.values()).map((c) =>
@@ -66,13 +108,16 @@ const commandJsonData = Array.from(client.slashCommands.values()).map((c) =>
 		console.log("Started refreshing application (/) commands.");
 
 		await rest.put(
-			/* IMP: Here we are sending to discord our slash commands to be registered. 
-			There are 2 types of commands, guild commands and global commands. 
-			Guild commands are for specific guilds and global ones are for all. 
-			In development, you should use guild commands as guild commands update
-			instantly, whereas global commands take upto 1 hour to be published. To 
-			deploy commands globally, replace the line below with: 
-						Routes.applicationCommands(client_id)						*/
+			/**
+			 * Here we are sending to discord our slash commands to be registered.
+					There are 2 types of commands, guild commands and global commands.
+					Guild commands are for specific guilds and global ones are for all.
+					In development, you should use guild commands as guild commands update
+					instantly, whereas global commands take upto 1 hour to be published. To
+					deploy commands globally, replace the line below with:
+				Routes.applicationCommands(client_id)
+			 */
+
 			Routes.applicationGuildCommands(client_id, test_guild_id),
 			{ body: commandJsonData }
 		);
@@ -83,8 +128,16 @@ const commandJsonData = Array.from(client.slashCommands.values()).map((c) =>
 	}
 })();
 
-client.triggers = new Collection();
+// Registration of Message Based Chat Triggers
+
+/**
+ * @type {String[]}
+ * @description All trigger categories aka folders.
+ */
+
 const triggerFolders = fs.readdirSync("./triggers");
+
+// Loop through all files and store commands in commands collection.
 
 for (const folder of triggerFolders) {
 	const triggerFiles = fs
@@ -95,5 +148,7 @@ for (const folder of triggerFolders) {
 		client.triggers.set(trigger.name, trigger);
 	}
 }
+
+// Login into your client application with bot's token.
 
 client.login(token);

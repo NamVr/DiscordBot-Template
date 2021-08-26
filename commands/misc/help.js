@@ -1,5 +1,11 @@
+/**
+ * @file Dynamic help command
+ * @author Naman Vrati
+ * @since 1.0.0
+ */
+
 const { prefix } = require("./../../config.json");
-const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
 	name: "help",
 	description: "List all commands of bot or info about a specific command.",
@@ -7,12 +13,19 @@ module.exports = {
 	usage: "[command name]",
 	cooldown: 5,
 	eligible: 1,
+
+	/**
+	 * @description Executes when the command is called by command handler.
+	 * @author Naman Vrati
+	 * @param {Object} message The Message Object of the command.
+	 * @param {String[]} args The Message Content of the received message seperated by spaces (' ') in an array, this excludes prefix and command/alias itself.
+	 */
+
 	execute(message, args) {
-		const data = [];
 		const { commands } = message.client;
 
 		if (!args.length) {
-			let helpEmbed = new Discord.MessageEmbed()
+			let helpEmbed = new MessageEmbed()
 				.setColor(0x4286f4)
 				.setURL(process.env.URL)
 				.setTitle("List of all my commands")
@@ -25,18 +38,20 @@ module.exports = {
 					`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`
 				);
 			return message.author
-				.send(helpEmbed)
+				.send({ embeds: [helpEmbed] })
 
 				.then(() => {
 					if (message.channel.type === "dm") return;
-					message.reply("I've sent you a DM with all my commands!");
+					message.reply({
+						content: "I've sent you a DM with all my commands!",
+					});
 				})
 				.catch((error) => {
 					console.error(
 						`Could not send help DM to ${message.author.tag}.\n`,
 						error
 					);
-					message.reply("it seems like I can't DM you!");
+					message.reply({ content: "It seems like I can't DM you!" });
 				});
 		}
 
@@ -46,10 +61,10 @@ module.exports = {
 			commands.find((c) => c.aliases && c.aliases.includes(name));
 
 		if (!command) {
-			return message.reply("that's not a valid command!");
+			return message.reply({ content: "That's not a valid command!" });
 		}
 
-		let commandEmbed = new Discord.MessageEmbed()
+		let commandEmbed = new MessageEmbed()
 			.setColor(0x4286f4)
 			.setTitle("Command Help");
 
@@ -66,6 +81,6 @@ module.exports = {
 				`\`${prefix}${command.name} ${command.usage}\``,
 				true
 			);
-		message.channel.send(commandEmbed);
+		message.channel.send({ embeds: [commandEmbed] });
 	},
 };

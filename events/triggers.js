@@ -1,7 +1,13 @@
+/**
+ * @file Main trigger handler file.
+ * @author Naman Vrati
+ * @since 2.0.0
+ */
+
 const Discord = require("discord.js");
 
 module.exports = {
-	name: "message",
+	name: "messageCreate",
 	async execute(message) {
 		// Checks if the trigger author is a bot, also provides all args of the message if needed for the specific trigger.
 		const args = message.content.split(/ +/);
@@ -18,7 +24,9 @@ module.exports = {
 						trigger.execute(message, args);
 					} catch (error) {
 						console.error(error);
-						message.reply("there was an error trying to execute that trigger!");
+						message.reply({
+							content: "there was an error trying to execute that trigger!",
+						});
 					}
 					check = 1;
 					return false;
