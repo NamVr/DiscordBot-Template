@@ -123,7 +123,7 @@ module.exports = {
 			return message.channel.send({ content: reply });
 		}
 
-		// Copldowns
+		// Cooldowns
 
 		const { cooldowns } = client;
 
