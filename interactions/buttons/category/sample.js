@@ -14,6 +14,9 @@ module.exports = {
 	 */
 
 	async execute(interaction) {
-		interaction.reply({ content: "This was a reply from button handler!" });
+		await interaction.reply({
+			content: "This was a reply from button handler!",
+		});
+		return;
 	},
 };

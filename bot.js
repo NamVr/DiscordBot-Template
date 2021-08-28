@@ -10,7 +10,7 @@ const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
-const { prefix, token, client_id, test_guild_id } = require("./config.json");
+const { token, client_id, test_guild_id } = require("./config.json");
 
 /**
  * From v13, specifying the intents is compulsory.
@@ -102,6 +102,29 @@ for (const module of slashCommands) {
 }
 
 /**********************************************************************/
+// Registration of Context-Menu Interactions
+
+/**
+ * @type {String[]}
+ * @description All Context Menu commands.
+ */
+
+const contextMenus = fs.readdirSync("./interactions/context-menus");
+
+// Loop through all files and store slash-commands in slashCommands collection.
+
+for (const folder of contextMenus) {
+	const files = fs
+		.readdirSync(`./interactions/context-menus/${folder}`)
+		.filter((file) => file.endsWith(".js"));
+	for (const file of files) {
+		const menu = require(`./interactions/context-menus/${folder}/${file}`);
+		const keyName = `${folder.toUpperCase()} ${menu.data.name}`;
+		client.contextCommands.set(keyName, menu);
+	}
+}
+
+/**********************************************************************/
 // Registration of Button-Command Interactions.
 
 /**
@@ -129,9 +152,10 @@ for (const module of buttonCommands) {
 
 const rest = new REST({ version: "9" }).setToken(token);
 
-const commandJsonData = Array.from(client.slashCommands.values()).map((c) =>
-	c.data.toJSON()
-);
+const commandJsonData = [
+	...Array.from(client.slashCommands.values()).map((c) => c.data.toJSON()),
+	...Array.from(client.contextCommands.values()).map((c) => c.data),
+];
 
 (async () => {
 	try {
