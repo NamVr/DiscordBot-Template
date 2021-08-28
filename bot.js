@@ -101,6 +101,19 @@ for (const module of slashCommands) {
 	}
 }
 
+const contextMenus = fs.readdirSync("./interactions/context-menus");
+
+for (const folder of contextMenus) {
+	const files = fs
+		.readdirSync(`./interactions/context-menus/${folder}`)
+		.filter((file) => file.endsWith(".js"));
+	for (const file of files) {
+		const menu = require(`./interactions/context-menus/${folder}/${file}`);
+		const keyName = `${folder.toUpperCase()} ${menu.data.name}`;
+		client.contextCommands.set(keyName, menu);
+	}
+}
+
 /**********************************************************************/
 // Registration of Button-Command Interactions.
 
@@ -129,9 +142,10 @@ for (const module of buttonCommands) {
 
 const rest = new REST({ version: "9" }).setToken(token);
 
-const commandJsonData = Array.from(client.slashCommands.values()).map((c) =>
-	c.data.toJSON()
-);
+const commandJsonData = [
+	...Array.from(client.slashCommands.values()).map((c) => c.data.toJSON()),
+	...Array.from(client.contextCommands.values()).map((c) => c.data),
+];
 
 (async () => {
 	try {
