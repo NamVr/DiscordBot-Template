@@ -36,9 +36,9 @@ This template comes in with many in-built useful and flexible features, such as
 - All events goes inside the [events](https://github.com/NamVr/DiscordBot-Template/blob/master/events/) folder. You don't need to use `client.on()` in the main `bot.js` file to handle events.
 - Using simple skeleton code for events, you can make any amount of events in the events folder using the event handler.
 
-#### • **[NEW] Dynamic Trigger Handler:**
+#### • **Dynamic Trigger Handler:**
 
-- The all new addition to my discord bot template. Triggers occur when a specific "phrase" is said in a message content. For example, if you want your bot to react with :heart: when someone say `welcome` in their message, you can do that with this trigger handler!
+- Triggers occur when a specific "phrase" is said in a message content. For example, if you want your bot to react with :heart: when someone say `welcome` in their message, you can do that with this trigger handler!
 - Trigger Handler also has the same skeleton structure as of command handler. The trigger handler is associated with the [triggers](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/) folder. There are trigger categories, like [reactions](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/reactions) folder, in the trigger folder.
 - A sample trigger command is given in the [`hello.js`](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/reactions/hello.js) trigger file.
 
@@ -47,6 +47,14 @@ This template comes in with many in-built useful and flexible features, such as
 - My template comes with a dynamic slash command handler with very easy to customize and make slash commands.
 - The commands, in the slashCommands folder, receive an [`CommandInteraction`](https://discord.js.org/#/docs/main/stable/class/CommandInteraction) object. You can see the [documentation of discord.js](https://discord.js.org/#/docs/main/stable/class/CommandInteraction) for all the properties and methods available.
 - **IMPORTANT:** In the template, we are sending the slash commands to discord to be registered only to 1 guild. That is because their are 2 types of slash commands, guild and global. Guild commands are restricted to 1 guild but whenever you update them, they take effect immediately, whereas global commands take upto 1 hour to take effect. So use guild commands in development and global commands for production.
+
+#### • **[NEW] Dynamic Buttons Interaction Handler:**
+- This template comes with a dynamic button interaction handler to receive and process button interactions.
+- Buttons can be classified in two category folders.
+
+#### • **[NEW] Dynamic Context Menu Handler:**
+- All new addition to discord API is context menus! You can right click a user or message -> Apps to find these options! 
+- This template will register all your context menu options and dynamically interact with them! Worth a try.
 
 #### • **Highly Customizable:**
 
@@ -72,7 +80,7 @@ npm run test
 
 I'm working to make it more professional and easy to use for everyone. There will be a documentation out very soon.
 
-## Author
+## Authors
 
 👤 **Naman Vrati**
 
@@ -80,6 +88,12 @@ I'm working to make it more professional and easy to use for everyone. There wil
 - Twitter: [@namanvrati](https://twitter.com/namanvrati)
 - Github: [@NamVr](https://github.com/NamVr)
 - LinkedIn: [@namanvrati](https://linkedin.com/in/namanvrati)
+
+👤 **Krish Garg**
+
+- Website: https://krishgarg.ga/
+- Twitter: [@KrishGa95586696](https://twitter.com/KrishGa95586696)
+- Github: [@KrishGarg](https://github.com/KrishGarg)
 
 ## 🤝 Contributing
 
