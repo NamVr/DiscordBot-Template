@@ -18,9 +18,10 @@ const { prefix, token, client_id, test_guild_id } = require("./config.json");
  * @description Main Application Client */
 
 const client = new Client({
-	intents: [Intents.FLAGS.GUILDS],
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
+/**********************************************************************/
 // Below we will be making an event handler!
 
 /**
@@ -45,13 +46,17 @@ for (const file of eventFiles) {
 	}
 }
 
+/**********************************************************************/
 // Define Collection of Commands, Slash Commands and cooldowns
 
 client.commands = new Collection();
 client.slashCommands = new Collection();
+client.buttonCommands = new Collection();
+client.contextCommands = new Collection();
 client.cooldowns = new Collection();
 client.triggers = new Collection();
 
+/**********************************************************************/
 // Registration of Message-Based Commands
 
 /**
@@ -73,6 +78,7 @@ for (const folder of commandFolders) {
 	}
 }
 
+/**********************************************************************/
 // Registration of Slash-Command Interactions.
 
 /**
@@ -80,21 +86,45 @@ for (const folder of commandFolders) {
  * @description All slash commands.
  */
 
-const slashCommands = fs.readdirSync("./slashCommands");
+const slashCommands = fs.readdirSync("./interactions/slash");
 
 // Loop through all files and store slash-commands in slashCommands collection.
 
 for (const module of slashCommands) {
 	const commandFiles = fs
-		.readdirSync(`./slashCommands/${module}`)
+		.readdirSync(`./interactions/slash/${module}`)
 		.filter((file) => file.endsWith(".js"));
 
 	for (const commandFile of commandFiles) {
-		const command = require(`./slashCommands/${module}/${commandFile}`);
+		const command = require(`./interactions/slash/${module}/${commandFile}`);
 		client.slashCommands.set(command.data.name, command);
 	}
 }
 
+/**********************************************************************/
+// Registration of Button-Command Interactions.
+
+/**
+ * @type {String[]}
+ * @description All button commands.
+ */
+
+const buttonCommands = fs.readdirSync("./interactions/buttons");
+
+// Loop through all files and store button-commands in buttonCommands collection.
+
+for (const module of buttonCommands) {
+	const commandFiles = fs
+		.readdirSync(`./interactions/buttons/${module}`)
+		.filter((file) => file.endsWith(".js"));
+
+	for (const commandFile of commandFiles) {
+		const command = require(`./interactions/buttons/${module}/${commandFile}`);
+		client.buttonCommands.set(command.id, command);
+	}
+}
+
+/**********************************************************************/
 // Registration of Slash-Commands in Discord API
 
 const rest = new REST({ version: "9" }).setToken(token);
@@ -128,6 +158,7 @@ const commandJsonData = Array.from(client.slashCommands.values()).map((c) =>
 	}
 })();
 
+/**********************************************************************/
 // Registration of Message Based Chat Triggers
 
 /**

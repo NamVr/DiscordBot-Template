@@ -6,6 +6,8 @@
 
 module.exports = {
 	name: "ping",
+
+	/** You need to uncomment below properties if you need them. */
 	//description: 'Ping!',
 	//usage: 'put usage here',
 	//permissions: 'SEND_MESSAGES',

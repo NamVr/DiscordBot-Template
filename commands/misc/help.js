@@ -4,15 +4,18 @@
  * @since 1.0.0
  */
 
+// Deconstructing prefix from config file to use in help command
 const { prefix } = require("./../../config.json");
+
+// Deconstructing MessageEmbed to create embeds within this command
 const { MessageEmbed } = require("discord.js");
+
 module.exports = {
 	name: "help",
 	description: "List all commands of bot or info about a specific command.",
 	aliases: ["commands"],
 	usage: "[command name]",
 	cooldown: 5,
-	eligible: 1,
 
 	/**
 	 * @description Executes when the command is called by command handler.

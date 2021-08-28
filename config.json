@@ -1,7 +1,7 @@
 {
 	"prefix": "!",
-	"token": "your bot token",
-	"owner": "the owner's id",
-	"client_id": "bot's client id",
-	"test_guild_id": "your test guild's id"
+	"token": "your-bot-token",
+	"owner": "owner-id",
+	"client_id": "bot-id",
+	"test_guild_id": "dev-server-id"
 }
