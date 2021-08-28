@@ -10,7 +10,7 @@ const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
-const { prefix, token, client_id, test_guild_id } = require("./config.json");
+const { token, client_id, test_guild_id } = require("./config.json");
 
 /**
  * From v13, specifying the intents is compulsory.
@@ -101,7 +101,17 @@ for (const module of slashCommands) {
 	}
 }
 
+/**********************************************************************/
+// Registration of Context-Menu Interactions
+
+/**
+ * @type {String[]}
+ * @description All Context Menu commands.
+ */
+
 const contextMenus = fs.readdirSync("./interactions/context-menus");
+
+// Loop through all files and store slash-commands in slashCommands collection.
 
 for (const folder of contextMenus) {
 	const files = fs
