@@ -52,6 +52,7 @@ for (const file of eventFiles) {
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.buttonCommands = new Collection();
+client.selectCommands = new Collection();
 client.contextCommands = new Collection();
 client.cooldowns = new Collection();
 client.triggers = new Collection();

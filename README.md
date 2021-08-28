@@ -49,11 +49,13 @@ This template comes in with many in-built useful and flexible features, such as
 - **IMPORTANT:** In the template, we are sending the slash commands to discord to be registered only to 1 guild. That is because their are 2 types of slash commands, guild and global. Guild commands are restricted to 1 guild but whenever you update them, they take effect immediately, whereas global commands take upto 1 hour to take effect. So use guild commands in development and global commands for production.
 
 #### • **[NEW] Dynamic Buttons Interaction Handler:**
+
 - This template comes with a dynamic button interaction handler to receive and process button interactions.
 - Buttons can be classified in two category folders.
 
 #### • **[NEW] Dynamic Context Menu Handler:**
-- All new addition to discord API is context menus! You can right click a user or message -> Apps to find these options! 
+
+- All new addition to discord API is context menus! You can right click a user or message -> Apps to find these options!
 - This template will register all your context menu options and dynamically interact with them! Worth a try.
 
 #### • **Highly Customizable:**
