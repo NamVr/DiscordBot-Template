@@ -1,6 +1,6 @@
 {
 	"name": "discordbot-template",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "A modified template based on discordjs.guide to create your own discord-js based bot!",
 	"main": "bot.js",
 	"scripts": {

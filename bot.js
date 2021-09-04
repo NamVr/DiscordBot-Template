@@ -149,6 +149,28 @@ for (const module of buttonCommands) {
 }
 
 /**********************************************************************/
+// Registration of select-menus Interactions
+
+/**
+ * @type {String[]}
+ * @description All Select Menu commands.
+ */
+
+ const selectMenus = fs.readdirSync("./interactions/select-menus");
+
+ // Loop through all files and store select-menus in slashCommands collection.
+ 
+ for (const module of selectMenus) {
+	 const commandFiles = fs
+		 .readdirSync(`./interactions/select-menus/${module}`)
+		 .filter((file) => file.endsWith(".js"));
+	 for (const commandFile of commandFiles) {
+		 const command = require(`./interactions/select-menus/${module}/${commandFile}`);
+		 client.selectCommands.set(command.id, command);
+	 }
+ }
+
+/**********************************************************************/
 // Registration of Slash-Commands in Discord API
 
 const rest = new REST({ version: "9" }).setToken(token);
