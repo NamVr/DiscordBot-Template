@@ -1,4 +1,4 @@
-/**
+NamVr/**
  * @file Dynamic help command
  * @author Naman Vrati
  * @since 1.0.0

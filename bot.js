@@ -1,4 +1,4 @@
-/**
+NamVr/**
  * @file Main File of the bot, responsible for registering events, commands, interactions etc.
  * @author Naman Vrati
  * @version 3.0.0

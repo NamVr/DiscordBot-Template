@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to NamVr Discord Bot Template 👋</h1>
+NamVr<h1 align="center">Welcome to NamVr Discord Bot Template 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-v3.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/NamVr/DiscordBot-Template#readme" target="_blank">
@@ -84,7 +84,7 @@ I'm working to make it more professional and easy to use for everyone. There wil
 
 ## Authors
 
-👤 **Naman Vrati**
+👤 **NamVr**
 
 - Website: https://namanvrati.cf/
 - Twitter: [@namanvrati](https://twitter.com/namanvrati)
@@ -108,7 +108,7 @@ You can also [sponsor](https://ko-fi.com/namanvrati) the project and get listed 
 
 ## 📝 License
 
-Copyright © 2021 [Naman Vrati](https://github.com/NamVr).<br />
+Copyright © 2021 [NamVr](https://github.com/NamVr).<br />
 This project is [ISC](https://github.com/NamVr/DiscordBot-Template/blob/master/LICENSE) licensed.
 
 ---
