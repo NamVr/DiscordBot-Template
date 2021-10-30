@@ -20,6 +20,7 @@ module.exports = {
 	 * @param {String[]} args The Message Content of the received message seperated by spaces (' ') in an array, this excludes prefix and command/alias itself.
 	 */
 
+	/** @type {import('../../typings/typings.js').CommandExecute}  */
 	execute(message, args) {
 		message.channel.send({ content: "Pong." });
 	},

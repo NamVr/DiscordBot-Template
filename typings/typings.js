@@ -15,3 +15,7 @@
  * @name DBT:Command#execute
  * 
  */
+
+/**
+ * @typedef {Function} CommandExecute
+ */
