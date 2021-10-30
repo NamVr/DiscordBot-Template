@@ -1,4 +1,4 @@
-NamVr/**
+/**
  * @file Sample help command with slash command.
  * @author Naman Vrati
  * @since 3.0.0

@@ -1,4 +1,4 @@
-NamVr/**
+/**
  * @file Sample Select-Menu interaction
  * @author Naman Vrati
  * @since 3.0.0

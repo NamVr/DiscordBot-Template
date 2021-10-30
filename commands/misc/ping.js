@@ -1,6 +1,6 @@
-NamVr/**
+/**
  * @file Sample ping command
- * @author Naman Vrati
+ * @author NamVr
  * @since 1.0.0
  */
 
