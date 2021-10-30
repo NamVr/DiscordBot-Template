@@ -1,6 +1,6 @@
 /**
  * @file Sample Trigger command.
- * @author Naman Vrati
+ * @author NamVr
  * @since 2.0.0
  */
 
@@ -11,7 +11,7 @@ module.exports = {
 
 	/**
 	 * @description Executes when it is triggered by trigger handler.
-	 * @author Naman Vrati
+	 * @author NamVr
 	 * @param {Object} message The Message Object of the trigger.
 	 * @param {String[]} args The Message Content of the received message seperated by spaces (' ') in an array
 	 */

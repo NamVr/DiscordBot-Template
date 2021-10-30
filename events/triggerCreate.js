@@ -1,6 +1,6 @@
 /**
  * @file Main trigger handler file.
- * @author Naman Vrati
+ * @author NamVr
  * @since 2.0.0
  */
 
@@ -9,7 +9,7 @@ module.exports = {
 
 	/**
 	 * @description Executes when a message is created and handle it.
-	 * @author Naman Vrati
+	 * @author NamVr
 	 * @param {*} message The message which was created.
 	 */
 

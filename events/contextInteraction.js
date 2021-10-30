@@ -9,7 +9,7 @@ module.exports = {
 
 	/**
 	 * @description Executes when an interaction is created and handle it.
-	 * @author Naman Vrati
+	 * @author NamVr
 	 * @param {Object} interaction The interaction which was created
 	 */
 

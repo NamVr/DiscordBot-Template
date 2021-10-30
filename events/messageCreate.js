@@ -1,6 +1,6 @@
 /**
  * @file Message Based Commands Handler
- * @author Naman Vrati
+ * @author NamVr
  * @since 1.0.0
  */
 
@@ -20,7 +20,7 @@ module.exports = {
 
 	/**
 	 * @description Executes when a message is created and handle it.
-	 * @author Naman Vrati
+	 * @author NamVr
 	 * @param {Object} message The message which was created.
 	 */
 
