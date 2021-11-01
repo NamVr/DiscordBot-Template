@@ -4,9 +4,14 @@
  * @since 1.0.0
  */
 
+import './ping';
+
 // "fs" declared is used in reloading command cache of the specified command.
 const fs = require("fs");
 
+/**
+ * @module import('./ping').LegacyCommand
+ */
 module.exports = {
 	name: "reload",
 	description: "Reloads a command",
