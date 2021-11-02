@@ -1,66 +1,43 @@
-<h1 align="center">Welcome to NamVr Discord Bot Template 👋</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-v3.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/NamVr/DiscordBot-Template#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/NamVr/DiscordBot-Template/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://twitter.com/namanvrati" target="_blank">
-    <img alt="Twitter: namanvrati" src="https://img.shields.io/twitter/follow/namanvrati.svg?style=social" />
-  </a>
-</p>
+---
+description: Welcome to NamVr Discord Bot Template 👋
+---
 
-> An **open source** `discord.js` bot template which is based on official [discord.js guide](https://discordjs.guide/) to get started on making your very personal discord bot!
+# Welcome!
+
+![Version](https://img.shields.io/badge/version-v2.0-blue.svg?cacheSeconds=2592000) [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/NamVr/DiscordBot-Template#readme) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/NamVr/DiscordBot-Template/graphs/commit-activity) [![Twitter: namanvrati](https://img.shields.io/twitter/follow/namanvrati.svg?style=social)](https://twitter.com/namanvrati)
+
+> An **open source** `discord.js` bot template which is based on official [discord.js guide](https://discordjs.guide) to get started on making your very personal discord bot!
 
 ### 🏠 [Homepage](https://github.com/NamVr/DiscordBot-Template#readme)
 
 ## Introduction
 
-`NamVr` Discord Bot Template is an open source discord.js based bot template to get started on a new bot project. It is classic javascript template, not requiring any external dependencies unlike other famous frameworks. (This is not a framework!)
-You can scale any kind of bot project using this template. (single server based or multiple server based) It all depends on your creativity!
+`NamVr` Discord Bot Template is an open source discord.js based bot template to get started on a new bot project. It is a classic javascript template, not requiring any external dependencies unlike other famous frameworks. (This is not a framework!) You can scale any kind of bot project using this template. (single server based or multiple server based) It all depends on your creativity!
 
 ### Features:
 
-This template comes in with many in-built useful and flexible features, such as
+This template comes with many in-built, useful and flexible features, such as:
 
 #### • **Dynamic Command Handler:**
 
-- My template comes in with a dynamic command handler! Using the command handler, you don't need to indulge in main bot files to create your very own command!
-- You can simply make command groups (categorized as folders) in the [commands](https://github.com/NamVr/DiscordBot-Template/tree/master/commands/) folder.
-- Your JavaScript commands goes inside respective category folders. A sample command is provided as [ping](https://github.com/NamVr/DiscordBot-Template/blob/master/commands/misc/ping.js) command. You can use the same skeleton for all commands you want!
+* My template comes with a dynamic command handler! Using the command handler, you don't need to edit the main bot files to create your very own command!&#x20;
+* You can simply make command groups (categorized as folders) in the [commands](https://github.com/NamVr/DiscordBot-Template/tree/master/commands/) folder.
+* Your JavaScript commands goes inside respective category folders. A sample command is provided as a command called [ping](https://github.com/NamVr/DiscordBot-Template/blob/master/commands/misc/ping.js). You can use the same skeleton for all commands you want!
 
 #### • **Dynamic Event Handler:**
 
-- All events goes inside the [events](https://github.com/NamVr/DiscordBot-Template/blob/master/events/) folder. You don't need to use `client.on()` in the main `bot.js` file to handle events.
-- Using simple skeleton code for events, you can make any amount of events in the events folder using the event handler.
+* All events go inside the [events](https://github.com/NamVr/DiscordBot-Template/blob/master/events/) folder. You don't need to use `client.on()` in the main `bot.js` file to handle events.&#x20;
+* Using the simple skeleton code for events, you can make unlimited amount of events in the events folder using the event handler.&#x20;
 
-#### • **Dynamic Trigger Handler:**
+#### • **\[NEW] Dynamic Trigger Handler:**
 
-- Triggers occur when a specific "phrase" is said in a message content. For example, if you want your bot to react with :heart: when someone say `welcome` in their message, you can do that with this trigger handler!
-- Trigger Handler also has the same skeleton structure as of command handler. The trigger handler is associated with the [triggers](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/) folder. There are trigger categories, like [reactions](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/reactions) folder, in the trigger folder.
-- A sample trigger command is given in the [`hello.js`](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/reactions/hello.js) trigger file.
-
-#### • **[NEW] Dynamic Slash Command Handler:**
-
-- My template comes with a dynamic slash command handler with very easy to customize and make slash commands.
-- The commands, in the slashCommands folder, receive an [`CommandInteraction`](https://discord.js.org/#/docs/main/stable/class/CommandInteraction) object. You can see the [documentation of discord.js](https://discord.js.org/#/docs/main/stable/class/CommandInteraction) for all the properties and methods available.
-- **IMPORTANT:** In the template, we are sending the slash commands to discord to be registered only to 1 guild. That is because their are 2 types of slash commands, guild and global. Guild commands are restricted to 1 guild but whenever you update them, they take effect immediately, whereas global commands take upto 1 hour to take effect. So use guild commands in development and global commands for production.
-
-#### • **[NEW] Dynamic Buttons Interaction Handler:**
-
-- This template comes with a dynamic button interaction handler to receive and process button interactions.
-- Buttons can be classified in two category folders.
-
-#### • **[NEW] Dynamic Context Menu Handler:**
-
-- All new addition to discord API is context menus! You can right click a user or message -> Apps to find these options!
-- This template will register all your context menu options and dynamically interact with them! Worth a try.
+* The all new addition to my discord bot template. Triggers occur when a specific "phrase" is said in a message's content. For example, if you want your bot to react with :heart: when someone says `welcome` in their message, you can do that with this trigger handler!
+* Trigger Handler also has the same skeleton structure as the command handler. The trigger handler is associated with the [triggers](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/) folder. There are trigger categories like the [reactions](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/reactions) folder in the trigger folder.
+* A sample trigger command is given in the [`hello.js`](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/reactions/hello.js) trigger file.
 
 #### • **Highly Customizable:**
 
-Using the template is so easy and fun, you would know. As the template does not rely on any external dependencies and written in javascript, it is highly customizable to any extend. There's no end to your creativity!
+Using the template is really easy and fun, you will find that out when you use it. As the template does not rely on any external dependencies and is written in javascript, it is customizable to any extent. There is no end to your creativity!
 
 #### • **Open source and self-hosted:**
 
@@ -68,47 +45,30 @@ Using the template is so easy and fun, you would know. As the template does not 
 
 ## Install
 
-```sh
+```bash
 npm install
 ```
 
 ## Run tests
 
-```sh
+```bash
 npm run test
 ```
 
 ## Support & Documentation
 
-I'm working to make it more professional and easy to use for everyone. There will be a documentation out very soon.
-
-## Authors
-
-👤 **Naman Vrati**
-
-- Website: https://namanvrati.cf/
-- Twitter: [@namanvrati](https://twitter.com/namanvrati)
-- Github: [@NamVr](https://github.com/NamVr)
-- LinkedIn: [@namanvrati](https://linkedin.com/in/namanvrati)
-
-👤 **Krish Garg**
-
-- Website: https://krishgarg.ga/
-- Twitter: [@KrishGa95586696](https://twitter.com/KrishGa95586696)
-- Github: [@KrishGarg](https://github.com/KrishGarg)
+I'm working on making it more professional and easy to use for everyone. You're in the right place for documentation!
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/NamVr/DiscordBot-Template/issues). You can also take a look at the [contributing guide](https://github.com/NamVr/DiscordBot-Template/blob/master/CONTRIBUTING.md).
+Contributions, issues and feature requests are welcome!\
+Feel free to check the [issues page](https://github.com/NamVr/DiscordBot-Template/issues). You can also take a look at the [contributing guide](https://github.com/NamVr/DiscordBot-Template/blob/master/CONTRIBUTING.md).
 
 ## Show your support
 
-Give a ⭐️ if this project helped you! Star-ring the project gives me encouragement to continue it.
-You can also [sponsor](https://ko-fi.com/namanvrati) the project and get listed as a contributer! Thanks a lot.
+Give a ⭐️ if this project helped you! Star-ing the project gives me encouragement to continue working on it. You can also [sponsor](https://ko-fi.com/namanvrati) the project and get listed as a contributor! Thanks a lot.
 
 ## 📝 License
 
-Copyright © 2021 [Naman Vrati](https://github.com/NamVr).<br />
+Copyright © 2021 [Naman Vrati](https://github.com/NamVr).\
 This project is [ISC](https://github.com/NamVr/DiscordBot-Template/blob/master/LICENSE) licensed.
-
----
