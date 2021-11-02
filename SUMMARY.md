@@ -11,3 +11,8 @@
 
 * [Basic Setup](get-started/basic-setup.md)
 * [Installation](get-started/installation.md)
+* [JsDoc (IntelliSense)](get-started/jsdoc-intellisense.md)
+
+## Guides
+
+* [Module Handlers](guides/module-handlers.md)
