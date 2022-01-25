@@ -1,7 +1,8 @@
 {
 	"name": "discordbot-template",
-	"version": "3.0.1",
+	"version": "3.1.0",
 	"description": "A modified template based on discordjs.guide to create your own discord-js based bot!",
+	"funding": "https://ko-fi.com/namanvrati",
 	"main": "bot.js",
 	"scripts": {
 		"start": "node bot.js",
@@ -14,7 +15,22 @@
 	"keywords": [
 		"discord-js"
 	],
-	"author": "Naman Vrati",
+	"author": {
+		"name": "Naman Vrati",
+		"url": "https://github.com/NamVr",
+		"email": "info@namanvrati.cf"
+	},
+	"contributors": [
+		{
+			"name": "Krish Garg",
+			"url": "https://github.com/KrishGarg"
+		},
+		{
+			"name": "Thomas Fournier",
+			"email": "thomas@artivain.com",
+			"url": "https://github.com/GoudronViande24"
+		}
+	],
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/NamVr/DiscordBot-Template/issues"
@@ -24,7 +40,7 @@
 		"@discordjs/builders": "^0.6.0",
 		"@discordjs/rest": "^0.1.0-canary.0",
 		"discord-api-types": "^0.22.0",
-		"discord.js": "^13.1.0"
+		"discord.js": "^13.6.0"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.12"
