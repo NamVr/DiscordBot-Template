@@ -74,7 +74,7 @@ module.exports = {
 					helpEmbed.addField(option.name, content.trim(), true);
 				});
 			} else {
-				helpEmbed.setDescription(`No slash command with the name \`${name}\` found.`);
+				helpEmbed.setDescription(`No slash command with the name \`${name}\` found.`).setColor("YELLOW");
 			};
 		} else {
 			// Give a list of all the commands
