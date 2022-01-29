@@ -42,7 +42,7 @@ module.exports = {
 		 * @type {string}
 		 * @description The "command" argument
 		 */
-		const name = interaction.options.getString("command").toLowerCase();
+		let name = interaction.options.getString("command");
 
 		/**
 		 * @type {MessageEmbed}
@@ -52,6 +52,7 @@ module.exports = {
 			.setColor(0x4286f4)
 
 		if (name) {
+			name = name.toLowerCase();
 			// If a single command has been asked for, send only this command's help.
 			// Added in version 3.1.0
 			helpEmbed.setTitle(`Help for \`${name}\` command`);
