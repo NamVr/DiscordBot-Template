@@ -82,20 +82,27 @@ npm run test
 
 I'm working to make it more professional and easy to use for everyone. There will be a documentation out very soon.
 
-## Authors
+## People
+
+### Author
 
 👤 **Naman Vrati**
-
 - Website: https://namanvrati.cf/
 - Twitter: [@namanvrati](https://twitter.com/namanvrati)
 - Github: [@NamVr](https://github.com/NamVr)
 - LinkedIn: [@namanvrati](https://linkedin.com/in/namanvrati)
 
-👤 **Krish Garg**
+### Contributors
 
+👤 **Krish Garg**
 - Website: https://krishgarg.ga/
 - Twitter: [@KrishGa95586696](https://twitter.com/KrishGa95586696)
 - Github: [@KrishGarg](https://github.com/KrishGarg)
+
+👤 **Thomas Fournier**
+- Website: https://artivain.com/
+- Github: https://github.com/GoudronViande24
+- Discord: `GoudronViande24#7211`
 
 ## 🤝 Contributing
 
@@ -109,6 +116,6 @@ You can also [sponsor](https://ko-fi.com/namanvrati) the project and get listed 
 ## 📝 License
 
 Copyright © 2021 [Naman Vrati](https://github.com/NamVr).<br />
-This project is [ISC](https://github.com/NamVr/DiscordBot-Template/blob/master/LICENSE) licensed.
+This project is [ISC](LICENSE) licensed.
 
 ---
