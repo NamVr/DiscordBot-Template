@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to NamVr Discord Bot Template 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-v3.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-v3.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/NamVr/DiscordBot-Template#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -72,6 +72,10 @@ Using the template is so easy and fun, you would know. As the template does not 
 npm install
 ```
 
+## Configuration
+
+- Rename [`config-example.json`](https://github.com/NamVr/DiscordBot-Template/blob/master/config-example.json) to `config.json` and fill the token and other values. Extend config.json according to your needs! 
+
 ## Run tests
 
 ```sh
@@ -81,28 +85,18 @@ npm run test
 ## Support & Documentation
 
 I'm working to make it more professional and easy to use for everyone. There will be a documentation out very soon.
+> WIP : https://djs.docs.namanvrati.cf/
 
-## People
-
-### Author
+## Author
 
 👤 **Naman Vrati**
-- Website: https://namanvrati.cf/
-- Twitter: [@namanvrati](https://twitter.com/namanvrati)
-- Github: [@NamVr](https://github.com/NamVr)
-- LinkedIn: [@namanvrati](https://linkedin.com/in/namanvrati)
+- Website: https://namanvrati.cf/ [broken lol]
+- Twitter: [@namanvrati](https://twitter.com/namanvrati) [inactive]
+- Github: [@NamVr](https://github.com/NamVr) [follow here]
 
 ### Contributors
 
-👤 **Krish Garg**
-- Website: https://krishgarg.ga/
-- Twitter: [@KrishGa95586696](https://twitter.com/KrishGa95586696)
-- Github: [@KrishGarg](https://github.com/KrishGarg)
-
-👤 **Thomas Fournier**
-- Website: https://artivain.com/
-- Github: https://github.com/GoudronViande24
-- Discord: `GoudronViande24#7211`
+👤 Thank you so much to **[Krish Garg](https://github.com/KrishGarg)** and **[Thomas Fournier](https://github.com/GoudronViande24)** for giving awesome contributions to the project.
 
 ## 🤝 Contributing
 
