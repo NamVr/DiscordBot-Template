@@ -10,7 +10,7 @@ module.exports = {
 	/**
 	 * @description Executes when the button with ID "sample" is clicked.
 	 * @author Naman Vrati
-	 * @param {Object} interaction The Interaction Object of the command.
+	 * @param {import("discord.js").ButtonInteraction} interaction The Interaction Object of the command.
 	 */
 
 	async execute(interaction) {

@@ -10,7 +10,7 @@ module.exports = {
 	/**
 	 * @description Executes when an interaction is created and handle it.
 	 * @author Naman Vrati
-	 * @param {Object} interaction The interaction which was created
+	 * @param {import("discord.js").CommandInteraction} interaction The interaction which was created
 	 */
 
 	async execute(interaction) {
@@ -22,7 +22,7 @@ module.exports = {
 		if (!interaction.isCommand()) return;
 		/**
 		 * @description The Interaction command object
-		 * @type {Object}
+		 * @type {import("discord.js").CommandInteraction}
 		 */
 
 		const command = client.slashCommands.get(interaction.commandName);

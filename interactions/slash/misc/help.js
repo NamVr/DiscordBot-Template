@@ -48,8 +48,7 @@ module.exports = {
 		 * @type {MessageEmbed}
 		 * @description Help command's embed
 		 */
-		const helpEmbed = new MessageEmbed()
-			.setColor(0x4286f4)
+		const helpEmbed = new MessageEmbed().setColor(0x4286f4);
 
 		if (name) {
 			name = name.toLowerCase();
@@ -62,21 +61,24 @@ module.exports = {
 				 * @description The command data
 				 */
 				const command = commands.get(name).data;
-				if (command.description) helpEmbed.setDescription(command.description + "\n\n**Parameters:**");
-				command.options.forEach(option => {
+				if (command.description)
+					helpEmbed.setDescription(command.description + "\n\n**Parameters:**");
+				command.options.forEach((option) => {
 					let content = option.description;
 					if (option.choices) {
 						let choices = "\nChoices: ";
-						option.choices.forEach(choice => choices += choice + ", ");
+						option.choices.forEach((choice) => (choices += choice + ", "));
 						choices = choices.slice(0, -2);
 						content += choices;
-					};
+					}
 					if (!option.required) content += "\n*Optional*";
 					helpEmbed.addField(option.name, content.trim(), true);
 				});
 			} else {
-				helpEmbed.setDescription(`No slash command with the name \`${name}\` found.`).setColor("YELLOW");
-			};
+				helpEmbed
+					.setDescription(`No slash command with the name \`${name}\` found.`)
+					.setColor("YELLOW");
+			}
 		} else {
 			// Give a list of all the commands
 			helpEmbed
@@ -84,7 +86,7 @@ module.exports = {
 				.setDescription(
 					"`" + commands.map((command) => command.data.name).join("`, `") + "`"
 				);
-		};
+		}
 
 		// Replies to the interaction!
 

@@ -13,7 +13,7 @@ module.exports = {
 	/**
 	 * @description Executes when the context option with name "sample" is clicked.
 	 * @author Krish Garg
-	 * @param {Object} interaction The Interaction Object of the command.
+	 * @param {import("discord.js").ContextMenuInteraction} interaction The Interaction Object of the command.
 	 */
 
 	async execute(interaction) {

@@ -12,7 +12,7 @@ module.exports = {
 	/**
 	 * @description Executes when it is triggered by trigger handler.
 	 * @author Naman Vrati
-	 * @param {Object} message The Message Object of the trigger.
+	 * @param {import("discord.js").Message} message The Message Object of the trigger.
 	 * @param {String[]} args The Message Content of the received message seperated by spaces (' ') in an array
 	 */
 

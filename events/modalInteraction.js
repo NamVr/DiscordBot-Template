@@ -1,7 +1,7 @@
 /**
- * @file Select Menu Interaction Handler
+ * @file Modal Interaction Handler
  * @author Naman Vrati
- * @since 3.0.0
+ * @since 3.2.0
  */
 
 module.exports = {
@@ -10,28 +10,28 @@ module.exports = {
 	/**
 	 * @description Executes when an interaction is created and handle it.
 	 * @author Naman Vrati
-	 * @param {import("discord.js").SelectMenuInteraction} interaction The interaction which was created
+	 * @param {import("discord.js").Interaction} interaction The interaction which was created
 	 */
 
 	async execute(interaction) {
 		// Deconstructed client from interaction object.
 		const { client } = interaction;
 
-		// Checks if the interaction is a select menu interaction (to prevent weird bugs)
+		// Checks if the interaction is a modal interaction (to prevent weird bugs)
 
-		if (!interaction.isSelectMenu()) return;
+		if (!interaction.isModalSubmit()) return;
 		/**
 		 * @description The Interaction command object
-		 * @type {import("discord.js").SelectMenuInteraction}
+		 * @type {import("discord.js").ModalSubmitInteraction}
 		 */
 
-		const command = client.selectCommands.get(interaction.customId);
+		const command = client.modalCommands.get(interaction.customId);
 
 		// If the interaction is not a command in cache, return error message.
-		// You can modify the error message at ./messages/defaultSelectError.js file!
+		// You can modify the error message at ./messages/defaultModalError.js file!
 
 		if (!command) {
-			await require("../messages/defaultSelectError").execute(interaction);
+			await require("../messages/defaultModalError").execute(interaction);
 			return;
 		}
 
@@ -43,7 +43,7 @@ module.exports = {
 		} catch (err) {
 			console.error(err);
 			await interaction.reply({
-				content: "There was an issue while executing that select menu option!",
+				content: "There was an issue while understanding this modal!",
 				ephemeral: true,
 			});
 			return;

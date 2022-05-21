@@ -1,5 +1,5 @@
 /**
- * @file Button Interaction Handler
+ * @file Context Interaction Handler
  * @author Krish Garg
  * @since 3.0.0
  */
@@ -10,14 +10,14 @@ module.exports = {
 	/**
 	 * @description Executes when an interaction is created and handle it.
 	 * @author Naman Vrati
-	 * @param {Object} interaction The interaction which was created
+	 * @param {import("discord.js").ContextMenuInteraction} interaction The interaction which was created
 	 */
 
 	execute: async (interaction) => {
 		// Deconstructed client from interaction object.
 		const { client } = interaction;
 
-		// Checks if the interaction is a button interaction (to prevent weird bugs)
+		// Checks if the interaction is a context interaction (to prevent weird bugs)
 
 		if (!interaction.isContextMenu()) return;
 
@@ -28,7 +28,7 @@ module.exports = {
 		if (interaction.targetType === "USER") {
 			/**
 			 * @description The Interaction command object
-			 * @type {Object}
+			 * @type {import("discord.js").ContextMenuInteraction}
 			 */
 
 			const command = client.contextCommands.get(
@@ -53,7 +53,7 @@ module.exports = {
 		else if (interaction.targetType === "MESSAGE") {
 			/**
 			 * @description The Interaction command object
-			 * @type {Object}
+			 * @type {import("discord.js").ContextMenuInteraction}
 			 */
 
 			const command = client.contextCommands.get(

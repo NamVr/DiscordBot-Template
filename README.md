@@ -74,7 +74,7 @@ npm install
 
 ## Configuration
 
-- Rename [`config-example.json`](https://github.com/NamVr/DiscordBot-Template/blob/master/config-example.json) to `config.json` and fill the token and other values. Extend config.json according to your needs! 
+- Rename [`config-example.json`](https://github.com/NamVr/DiscordBot-Template/blob/master/config-example.json) to `config.json` and fill the token and other values. Extend config.json according to your needs!
 
 ## Run tests
 
@@ -85,11 +85,13 @@ npm run test
 ## Support & Documentation
 
 I'm working to make it more professional and easy to use for everyone. There will be a documentation out very soon.
+
 > WIP : https://djs.docs.namanvrati.cf/
 
 ## Author
 
 👤 **Naman Vrati**
+
 - Website: https://namanvrati.cf/ [broken lol]
 - Twitter: [@namanvrati](https://twitter.com/namanvrati) [inactive]
 - Github: [@NamVr](https://github.com/NamVr) [follow here]

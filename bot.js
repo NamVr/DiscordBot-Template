@@ -14,10 +14,11 @@ const { token, client_id, test_guild_id } = require("./config.json");
 
 /**
  * From v13, specifying the intents is compulsory.
- * @type {Object}
+ * @type {import("discord.js").Client}
  * @description Main Application Client */
 
 const client = new Client({
+	// Please add all intents you need, more detailed information @ https://ziad87.net/intents/
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
@@ -54,11 +55,12 @@ client.slashCommands = new Collection();
 client.buttonCommands = new Collection();
 client.selectCommands = new Collection();
 client.contextCommands = new Collection();
+client.modalCommands = new Collection();
 client.cooldowns = new Collection();
 client.triggers = new Collection();
 
 /**********************************************************************/
-// Registration of Message-Based Commands
+// Registration of Message-Based Legacy Commands.
 
 /**
  * @type {String[]}
@@ -112,7 +114,7 @@ for (const module of slashCommands) {
 
 const contextMenus = fs.readdirSync("./interactions/context-menus");
 
-// Loop through all files and store slash-commands in slashCommands collection.
+// Loop through all files and store context-menus in contextMenus collection.
 
 for (const folder of contextMenus) {
 	const files = fs
@@ -149,6 +151,29 @@ for (const module of buttonCommands) {
 }
 
 /**********************************************************************/
+// Registration of Modal-Command Interactions.
+
+/**
+ * @type {String[]}
+ * @description All modal commands.
+ */
+
+const modalCommands = fs.readdirSync("./interactions/modals");
+
+// Loop through all files and store modal-commands in modalCommands collection.
+
+for (const module of modalCommands) {
+	const commandFiles = fs
+		.readdirSync(`./interactions/modals/${module}`)
+		.filter((file) => file.endsWith(".js"));
+
+	for (const commandFile of commandFiles) {
+		const command = require(`./interactions/modals/${module}/${commandFile}`);
+		client.modalCommands.set(command.id, command);
+	}
+}
+
+/**********************************************************************/
 // Registration of select-menus Interactions
 
 /**
@@ -156,19 +181,19 @@ for (const module of buttonCommands) {
  * @description All Select Menu commands.
  */
 
- const selectMenus = fs.readdirSync("./interactions/select-menus");
+const selectMenus = fs.readdirSync("./interactions/select-menus");
 
- // Loop through all files and store select-menus in slashCommands collection.
- 
- for (const module of selectMenus) {
-	 const commandFiles = fs
-		 .readdirSync(`./interactions/select-menus/${module}`)
-		 .filter((file) => file.endsWith(".js"));
-	 for (const commandFile of commandFiles) {
-		 const command = require(`./interactions/select-menus/${module}/${commandFile}`);
-		 client.selectCommands.set(command.id, command);
-	 }
- }
+// Loop through all files and store select-menus in selectMenus collection.
+
+for (const module of selectMenus) {
+	const commandFiles = fs
+		.readdirSync(`./interactions/select-menus/${module}`)
+		.filter((file) => file.endsWith(".js"));
+	for (const commandFile of commandFiles) {
+		const command = require(`./interactions/select-menus/${module}/${commandFile}`);
+		client.selectCommands.set(command.id, command);
+	}
+}
 
 /**********************************************************************/
 // Registration of Slash-Commands in Discord API
@@ -186,16 +211,22 @@ const commandJsonData = [
 
 		await rest.put(
 			/**
-			 * Here we are sending to discord our slash commands to be registered.
-					There are 2 types of commands, guild commands and global commands.
-					Guild commands are for specific guilds and global ones are for all.
-					In development, you should use guild commands as guild commands update
-					instantly, whereas global commands take upto 1 hour to be published. To
-					deploy commands globally, replace the line below with:
-				Routes.applicationCommands(client_id)
+			 * By default, you will be using guild commands during development.
+			 * Once you are done and ready to use global commands (which have 1 hour cache time),
+			 * 1. Please uncomment the below (commented) line to deploy global commands.
+			 * 2. Please comment the below (uncommented) line (for guild commands).
 			 */
 
 			Routes.applicationGuildCommands(client_id, test_guild_id),
+
+			/**
+			 * Good advice for global commands, you need to execute them only once to update
+			 * your commands to the Discord API. Please comment it again after running the bot once
+			 * to ensure they don't get re-deployed on the next restart.
+			 */
+
+			// Routes.applicationGuildCommands(client_id)
+
 			{ body: commandJsonData }
 		);
 
@@ -215,7 +246,7 @@ const commandJsonData = [
 
 const triggerFolders = fs.readdirSync("./triggers");
 
-// Loop through all files and store commands in commands collection.
+// Loop through all files and store triggers in triggers collection.
 
 for (const folder of triggerFolders) {
 	const triggerFiles = fs

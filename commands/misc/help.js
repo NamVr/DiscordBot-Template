@@ -20,7 +20,7 @@ module.exports = {
 	/**
 	 * @description Executes when the command is called by command handler.
 	 * @author Naman Vrati
-	 * @param {Object} message The Message Object of the command.
+	 * @param {import("discord.js").Message} message The Message Object of the command.
 	 * @param {String[]} args The Message Content of the received message seperated by spaces (' ') in an array, this excludes prefix and command/alias itself.
 	 */
 
@@ -31,7 +31,7 @@ module.exports = {
 
 		if (!args.length) {
 			/**
-			 * @type {Object}
+			 * @type {import("discord.js").MessageEmbed}
 			 * @description Help command embed object
 			 */
 
@@ -99,7 +99,7 @@ module.exports = {
 		}
 
 		/**
-		 * @type {Object}
+		 * @type {import("discord.js").MessageEmbed}
 		 * @description Embed of Help command for a specific command.
 		 */
 

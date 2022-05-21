@@ -21,7 +21,7 @@ module.exports = {
 	/**
 	 * @description Executes when a message is created and handle it.
 	 * @author Naman Vrati
-	 * @param {Object} message The message which was created.
+	 * @param {import("discord.js").Message} message The message which was created.
 	 */
 
 	async execute(message) {
