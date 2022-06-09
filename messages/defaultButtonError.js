@@ -8,7 +8,7 @@ module.exports = {
 	/**
 	 * @description Executes when the button interaction could not be fetched.
 	 * @author Naman Vrati
-	 * @param {import("discord.js").ButtonInteraction} interaction The Interaction Object of the command.
+	 * @param {import('discord.js').ButtonInteraction} interaction The Interaction Object of the command.
 	 */
 
 	async execute(interaction) {

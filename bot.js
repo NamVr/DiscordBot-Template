@@ -14,9 +14,10 @@ const { token, client_id, test_guild_id } = require("./config.json");
 
 /**
  * From v13, specifying the intents is compulsory.
- * @type {import("discord.js").Client}
+ * @type {import('./typings').Client}
  * @description Main Application Client */
 
+// @ts-ignore
 const client = new Client({
 	// Please add all intents you need, more detailed information @ https://ziad87.net/intents/
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],

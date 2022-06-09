@@ -2,6 +2,7 @@
  * @file Button Interaction Handler
  * @author Naman Vrati
  * @since 3.0.0
+ * @version 3.2.2
  */
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
 	/**
 	 * @description Executes when an interaction is created and handle it.
 	 * @author Naman Vrati
-	 * @param {import("discord.js").ButtonInteraction} interaction The interaction which was created
+	 * @param {import('discord.js').ButtonInteraction & { client: import('../typings').Client }} interaction The interaction which was created
 	 */
 
 	async execute(interaction) {
@@ -20,10 +21,6 @@ module.exports = {
 		// Checks if the interaction is a button interaction (to prevent weird bugs)
 
 		if (!interaction.isButton()) return;
-		/**
-		 * @description The Interaction command object
-		 * @type {import("discord.js").ButtonInteraction}
-		 */
 
 		const command = client.buttonCommands.get(interaction.customId);
 

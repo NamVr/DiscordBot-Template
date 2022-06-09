@@ -2,6 +2,7 @@
  * @file Message Based Commands Handler
  * @author Naman Vrati
  * @since 1.0.0
+ * @version 3.2.2
  */
 
 // Declares constants (destructured) to be used in this file.
@@ -21,7 +22,7 @@ module.exports = {
 	/**
 	 * @description Executes when a message is created and handle it.
 	 * @author Naman Vrati
-	 * @param {import("discord.js").Message} message The message which was created.
+	 * @param {import('discord.js').Message & { client: import('../typings').Client }} message The message which was created.
 	 */
 
 	async execute(message) {
@@ -84,11 +85,6 @@ module.exports = {
 		if (!message.content.startsWith(matchedPrefix) || message.author.bot)
 			return;
 
-		/**
-		 * @description The message command object.
-		 * @type {Object}
-		 */
-
 		const command =
 			client.commands.get(commandName) ||
 			client.commands.find(
@@ -107,15 +103,16 @@ module.exports = {
 
 		// Guild Only Property, add in your command properties if true.
 
-		if (command.guildOnly && message.channel.type === "dm") {
+		if (command.guildOnly && message.channel.type === "DM") {
 			return message.reply({
 				content: "I can't execute that command inside DMs!",
 			});
 		}
 
 		// Author perms property
+		// Will skip the permission check if command channel is a DM. Use guildOnly for possible error prone commands!
 
-		if (command.permissions) {
+		if (command.permissions && message.channel.type !== "DM") {
 			const authorPerms = message.channel.permissionsFor(message.author);
 			if (!authorPerms || !authorPerms.has(command.permissions)) {
 				return message.reply({ content: "You can not do this!" });

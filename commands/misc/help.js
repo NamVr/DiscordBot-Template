@@ -2,6 +2,7 @@
  * @file Dynamic help command
  * @author Naman Vrati
  * @since 1.0.0
+ * @version 3.2.2
  */
 
 // Deconstructing prefix from config file to use in help command
@@ -10,19 +11,15 @@ const { prefix } = require("./../../config.json");
 // Deconstructing MessageEmbed to create embeds within this command
 const { MessageEmbed } = require("discord.js");
 
+/**
+ * @type {import('../../typings').LegacyCommand}
+ */
 module.exports = {
 	name: "help",
 	description: "List all commands of bot or info about a specific command.",
 	aliases: ["commands"],
 	usage: "[command name]",
 	cooldown: 5,
-
-	/**
-	 * @description Executes when the command is called by command handler.
-	 * @author Naman Vrati
-	 * @param {import("discord.js").Message} message The Message Object of the command.
-	 * @param {String[]} args The Message Content of the received message seperated by spaces (' ') in an array, this excludes prefix and command/alias itself.
-	 */
 
 	execute(message, args) {
 		const { commands } = message.client;
@@ -31,7 +28,7 @@ module.exports = {
 
 		if (!args.length) {
 			/**
-			 * @type {import("discord.js").MessageEmbed}
+			 * @type {MessageEmbed}
 			 * @description Help command embed object
 			 */
 
@@ -54,7 +51,7 @@ module.exports = {
 				.send({ embeds: [helpEmbed] })
 
 				.then(() => {
-					if (message.channel.type === "dm") return;
+					if (message.channel.type === "DM") return;
 
 					// On validation, reply back.
 
@@ -83,11 +80,6 @@ module.exports = {
 
 		const name = args[0].toLowerCase();
 
-		/**
-		 * @type {Object}
-		 * @description The command object
-		 */
-
 		const command =
 			commands.get(name) ||
 			commands.find((c) => c.aliases && c.aliases.includes(name));
@@ -99,7 +91,7 @@ module.exports = {
 		}
 
 		/**
-		 * @type {import("discord.js").MessageEmbed}
+		 * @type {MessageEmbed}
 		 * @description Embed of Help command for a specific command.
 		 */
 

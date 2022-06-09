@@ -2,6 +2,7 @@
  * @file Main trigger handler file.
  * @author Naman Vrati
  * @since 2.0.0
+ * @version 3.2.2
  */
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
 	/**
 	 * @description Executes when a message is created and handle it.
 	 * @author Naman Vrati
-	 * @param {*} message The message which was created.
+	 * @param {import('discord.js').Message & { client: import('../typings').Client }} message The message which was created.
 	 */
 
 	async execute(message) {
@@ -27,12 +28,12 @@ module.exports = {
 
 		// Checking ALL triggers using every function and breaking out if a trigger was found.
 
-		/** @type {String} */
+		/** @type {Number} */
 		let check;
 
-		await message.client.triggers.every(async (trigger) => {
+		message.client.triggers.every((trigger) => {
 			if (check == 1) return false;
-			await trigger.name.every(async (name) => {
+			trigger.name.every(async (name) => {
 				if (check == 1) return false;
 
 				// If validated, it will try to execute the trigger.

@@ -53,6 +53,11 @@ This template comes in with many in-built useful and flexible features, such as
 - This template comes with a dynamic button interaction handler to receive and process button interactions.
 - Buttons can be classified in two category folders.
 
+#### • **[NEW] Dynamic Modals Interaction Handler:**
+
+- Easily handle incoming modal submittions using the template handler!
+- Modals can be categorized in different folders.
+
 #### • **[NEW] Dynamic Context Menu Handler:**
 
 - All new addition to discord API is context menus! You can right click a user or message -> Apps to find these options!

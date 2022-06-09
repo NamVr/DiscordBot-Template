@@ -1,18 +1,21 @@
 /**
  * @file Sample help command with slash command.
- * @author Naman Vrati
- * @author Thomas Fournier <thomas@artivain.com>
+ * @author Naman Vrati & Thomas Fournier
  * @since 3.0.0
- * @version 3.1.0
+ * @version 3.2.2
  */
 
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed, Collection } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
+/**
+ * @type {import('../../../typings').SlashInteractionCommand}
+ */
 module.exports = {
 	// The data needed to register slash commands to Discord.
+
 	data: new SlashCommandBuilder()
 		.setName("help")
 		.setDescription(
@@ -24,20 +27,7 @@ module.exports = {
 				.setDescription("The specific command to see the info of.")
 		),
 
-	/**
-	 * @description Executes when the interaction is called by interaction handler.
-	 * @author Naman Vrati
-	 * @author Thomas Fournier <thomas@artivain.com>
-	 * @param {*} interaction The interaction object of the command.
-	 */
-
 	async execute(interaction) {
-		/**
-		 * @type {Collection}
-		 * @description Collection of all slash commands
-		 */
-		const commands = interaction.client.slashCommands;
-
 		/**
 		 * @type {string}
 		 * @description The "command" argument
@@ -52,28 +42,18 @@ module.exports = {
 
 		if (name) {
 			name = name.toLowerCase();
+
 			// If a single command has been asked for, send only this command's help.
-			// Added in version 3.1.0
+
 			helpEmbed.setTitle(`Help for \`${name}\` command`);
-			if (commands.has(name)) {
-				/**
-				 * @type {SlashCommandBuilder}
-				 * @description The command data
-				 */
-				const command = commands.get(name).data;
-				if (command.description)
-					helpEmbed.setDescription(command.description + "\n\n**Parameters:**");
-				command.options.forEach((option) => {
-					let content = option.description;
-					if (option.choices) {
-						let choices = "\nChoices: ";
-						option.choices.forEach((choice) => (choices += choice + ", "));
-						choices = choices.slice(0, -2);
-						content += choices;
-					}
-					if (!option.required) content += "\n*Optional*";
-					helpEmbed.addField(option.name, content.trim(), true);
-				});
+
+			if (interaction.client.slashCommands.has(name)) {
+				const command = interaction.client.slashCommands.get(name);
+
+				if (command.data.description)
+					helpEmbed.setDescription(
+						command.data.description + "\n\n**Parameters:**"
+					);
 			} else {
 				helpEmbed
 					.setDescription(`No slash command with the name \`${name}\` found.`)
@@ -81,10 +61,15 @@ module.exports = {
 			}
 		} else {
 			// Give a list of all the commands
+
 			helpEmbed
 				.setTitle("List of all my slash commands")
 				.setDescription(
-					"`" + commands.map((command) => command.data.name).join("`, `") + "`"
+					"`" +
+						interaction.client.slashCommands
+							.map((command) => command.data.name)
+							.join("`, `") +
+						"`"
 				);
 		}
 

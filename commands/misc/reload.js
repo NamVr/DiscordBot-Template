@@ -1,24 +1,21 @@
 /**
- * @file Command reloader
+ * @file Live command reloader
  * @author Naman Vrati
  * @since 1.0.0
+ * @version 3.2.2
  */
 
 // "fs" declared is used in reloading command cache of the specified command.
 const fs = require("fs");
 
+/**
+ * @type {import('../../typings').LegacyCommand}
+ */
 module.exports = {
 	name: "reload",
 	description: "Reloads a command",
 	args: true,
 	ownerOnly: true,
-
-	/**
-	 * @description Executes when the command is called by command handler.
-	 * @author Naman Vrati
-	 * @param {import("discord.js").Message} message The Message Object of the command.
-	 * @param {String[]} args The Message Content of the received message seperated by spaces (' ') in an array, this excludes prefix and command/alias itself.
-	 */
 
 	execute(message, args) {
 		/**
@@ -27,11 +24,6 @@ module.exports = {
 		 */
 
 		const commandName = args[0].toLowerCase();
-
-		/**
-		 * @type {Object}
-		 * @description The command object itself which is specified.
-		 */
 
 		const command =
 			message.client.commands.get(commandName) ||
@@ -72,8 +64,8 @@ module.exports = {
 
 		try {
 			/**
-			 * @type {Object}
-			 * @description New Command Code Fetch
+			 * @type {import('../../typings').LegacyCommand}
+			 * @description The new command (code fetch)
 			 */
 
 			const newCommand = require(`../${folderName}/${command.name}.js`);
