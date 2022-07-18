@@ -226,7 +226,7 @@ const commandJsonData = [
 			 * to ensure they don't get re-deployed on the next restart.
 			 */
 
-			// Routes.applicationGuildCommands(client_id)
+			// Routes.applicationCommands(client_id)
 
 			{ body: commandJsonData }
 		);
