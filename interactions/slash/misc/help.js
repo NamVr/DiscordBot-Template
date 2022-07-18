@@ -25,6 +25,7 @@ module.exports = {
 			option
 				.setName("command")
 				.setDescription("The specific command to see the info of.")
+				.setAutocomplete(true)
 		),
 
 	async execute(interaction) {
@@ -78,5 +79,28 @@ module.exports = {
 		await interaction.reply({
 			embeds: [helpEmbed],
 		});
+	},
+	async autocomplete(interaction) {
+		// Get the focused value. In this command is string option name "command" in this.data
+
+		const focusedValue = interaction.options.getFocused();
+
+		// If there is no focused value. It will respond with an empty array. Which means there is no option found.
+
+		if (!focusedValue) return await interaction.respond([]);
+
+		// Get all the slash commands name and convert them into array.
+
+		const choices = [...interaction.client.slashCommands.keys()]
+
+		// Filter the focused value to seek for the command it found.
+
+		const filtered = choices.filter(choice => choice.startsWith(focusedValue));
+
+		// If it has once, interaction will recommend/autocomplete that command. If no, empty array will be returned and Discord client will say there is no option found.
+
+		await interaction.respond(
+			filtered.map(choice => ({ name: choice, value: choice })),
+		);
 	},
 };
