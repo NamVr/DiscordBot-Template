@@ -1,13 +1,19 @@
 /**
  * @file Main File of the bot, responsible for registering events, commands, interactions etc.
  * @author Naman Vrati
- * @version 3.0.0
+ * @since 1.0.0
+ * @version 3.3.0
  */
 
 // Declare constants which will be used throughout the bot.
 
 const fs = require("fs");
-const { Client, Collection, Intents } = require("discord.js");
+const {
+	Client,
+	Collection,
+	GatewayIntentBits,
+	Partials,
+} = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { token, client_id, test_guild_id } = require("./config.json");
@@ -20,7 +26,13 @@ const { token, client_id, test_guild_id } = require("./config.json");
 // @ts-ignore
 const client = new Client({
 	// Please add all intents you need, more detailed information @ https://ziad87.net/intents/
-	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.DirectMessages,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+	],
+	partials: [Partials.Channel],
 });
 
 /**********************************************************************/
@@ -58,6 +70,7 @@ client.selectCommands = new Collection();
 client.contextCommands = new Collection();
 client.modalCommands = new Collection();
 client.cooldowns = new Collection();
+client.autocompleteInteractions = new Collection();
 client.triggers = new Collection();
 
 /**********************************************************************/
@@ -102,6 +115,29 @@ for (const module of slashCommands) {
 	for (const commandFile of commandFiles) {
 		const command = require(`./interactions/slash/${module}/${commandFile}`);
 		client.slashCommands.set(command.data.name, command);
+	}
+}
+
+/**********************************************************************/
+// Registration of Autocomplete Interactions.
+
+/**
+ * @type {String[]}
+ * @description All autocomplete interactions.
+ */
+
+const autocompleteInteractions = fs.readdirSync("./interactions/autocomplete");
+
+// Loop through all files and store autocomplete interactions in autocompleteInteractions collection.
+
+for (const module of autocompleteInteractions) {
+	const files = fs
+		.readdirSync(`./interactions/autocomplete/${module}`)
+		.filter((file) => file.endsWith(".js"));
+
+	for (const interactionFile of files) {
+		const interaction = require(`./interactions/autocomplete/${module}/${interactionFile}`);
+		client.autocompleteInteractions.set(interaction.name, interaction);
 	}
 }
 
@@ -226,7 +262,7 @@ const commandJsonData = [
 			 * to ensure they don't get re-deployed on the next restart.
 			 */
 
-			// Routes.applicationGuildCommands(client_id)
+			// Routes.applicationCommands(client_id)
 
 			{ body: commandJsonData }
 		);

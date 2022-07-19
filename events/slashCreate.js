@@ -2,7 +2,7 @@
  * @file Slash Command Interaction Handler
  * @author Naman Vrati
  * @since 3.0.0
- * @version 3.2.2
+ * @version 3.3.0
  */
 
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
 
 		// Checks if the interaction is a command (to prevent weird bugs)
 
-		if (!interaction.isCommand()) return;
+		if (!interaction.isChatInputCommand()) return;
 
 		const command = client.slashCommands.get(interaction.commandName);
 

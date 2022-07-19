@@ -2,8 +2,10 @@
  * @file Button Interaction Handler
  * @author Naman Vrati
  * @since 3.0.0
- * @version 3.2.2
+ * @version 3.3.0
  */
+
+const { InteractionType, ComponentType } = require("discord-api-types/v10");
 
 module.exports = {
 	name: "interactionCreate",
@@ -20,7 +22,9 @@ module.exports = {
 
 		// Checks if the interaction is a button interaction (to prevent weird bugs)
 
-		if (!interaction.isButton()) return;
+		if (interaction.type !== InteractionType.MessageComponent) return;
+
+		if (interaction.componentType !== ComponentType.Button) return;
 
 		const command = client.buttonCommands.get(interaction.customId);
 

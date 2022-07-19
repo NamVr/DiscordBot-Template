@@ -2,12 +2,12 @@
  * @file Message Based Commands Handler
  * @author Naman Vrati
  * @since 1.0.0
- * @version 3.2.2
+ * @version 3.3.0
  */
 
 // Declares constants (destructured) to be used in this file.
 
-const { Collection } = require("discord.js");
+const { Collection, ChannelType } = require("discord.js");
 const { prefix, owner } = require("../config.json");
 
 // Prefix regex, we will use to match in mention prefix.
@@ -103,7 +103,7 @@ module.exports = {
 
 		// Guild Only Property, add in your command properties if true.
 
-		if (command.guildOnly && message.channel.type === "DM") {
+		if (command.guildOnly && message.channel.type === ChannelType.DM) {
 			return message.reply({
 				content: "I can't execute that command inside DMs!",
 			});
@@ -112,7 +112,7 @@ module.exports = {
 		// Author perms property
 		// Will skip the permission check if command channel is a DM. Use guildOnly for possible error prone commands!
 
-		if (command.permissions && message.channel.type !== "DM") {
+		if (command.permissions && message.channel.type !== ChannelType.DM) {
 			const authorPerms = message.channel.permissionsFor(message.author);
 			if (!authorPerms || !authorPerms.has(command.permissions)) {
 				return message.reply({ content: "You can not do this!" });

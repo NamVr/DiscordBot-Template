@@ -2,14 +2,14 @@
  * @file Dynamic help command
  * @author Naman Vrati
  * @since 1.0.0
- * @version 3.2.2
+ * @version 3.3.0
  */
 
 // Deconstructing prefix from config file to use in help command
 const { prefix } = require("./../../config.json");
 
-// Deconstructing MessageEmbed to create embeds within this command
-const { MessageEmbed } = require("discord.js");
+// Deconstructing EmbedBuilder to create embeds within this command
+const { EmbedBuilder, ChannelType } = require("discord.js");
 
 /**
  * @type {import('../../typings').LegacyCommand}
@@ -28,22 +28,23 @@ module.exports = {
 
 		if (!args.length) {
 			/**
-			 * @type {MessageEmbed}
+			 * @type {EmbedBuilder}
 			 * @description Help command embed object
 			 */
 
-			let helpEmbed = new MessageEmbed()
-				.setColor(0x4286f4)
-				.setURL(process.env.URL)
+			let helpEmbed = new EmbedBuilder()
+				.setColor("Random")
 				.setTitle("List of all my commands")
 				.setDescription(
 					"`" + commands.map((command) => command.name).join("`, `") + "`"
 				)
 
-				.addField(
-					"Usage",
-					`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`
-				);
+				.addFields([
+					{
+						name: "Usage",
+						value: `\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`,
+					},
+				]);
 
 			// Attempts to send embed in DMs.
 
@@ -51,7 +52,7 @@ module.exports = {
 				.send({ embeds: [helpEmbed] })
 
 				.then(() => {
-					if (message.channel.type === "DM") return;
+					if (message.channel.type === ChannelType.DM) return;
 
 					// On validation, reply back.
 
@@ -91,27 +92,38 @@ module.exports = {
 		}
 
 		/**
-		 * @type {MessageEmbed}
+		 * @type {EmbedBuilder}
 		 * @description Embed of Help command for a specific command.
 		 */
 
-		let commandEmbed = new MessageEmbed()
-			.setColor(0x4286f4)
+		let commandEmbed = new EmbedBuilder()
+			.setColor("Random")
 			.setTitle("Command Help");
 
 		if (command.description)
 			commandEmbed.setDescription(`${command.description}`);
 
 		if (command.aliases)
-			commandEmbed
-				.addField("Aliases", `\`${command.aliases.join(", ")}\``, true)
-				.addField("Cooldown", `${command.cooldown || 3} second(s)`, true);
+			commandEmbed.addFields([
+				{
+					name: "Aliases",
+					value: `\`${command.aliases.join(", ")}\``,
+					inline: true,
+				},
+				{
+					name: "Cooldown",
+					value: `${command.cooldown || 3} second(s)`,
+					inline: true,
+				},
+			]);
 		if (command.usage)
-			commandEmbed.addField(
-				"Usage",
-				`\`${prefix}${command.name} ${command.usage}\``,
-				true
-			);
+			commandEmbed.addFields([
+				{
+					name: "Usage",
+					value: `\`${prefix}${command.name} ${command.usage}\``,
+					inline: true,
+				},
+			]);
 
 		// Finally send the embed.
 

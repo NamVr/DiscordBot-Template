@@ -2,7 +2,7 @@
  * @file Context Interaction Handler
  * @author Krish Garg & Naman Vrati
  * @since 3.0.0
- * @version 3.2.2
+ * @version 3.3.0
  */
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
 	/**
 	 * @description Executes when an interaction is created and handle it.
 	 * @author Naman Vrati
-	 * @param {import('discord.js').ContextMenuInteraction & { client: import('../typings').Client }} interaction The interaction which was created
+	 * @param {import('discord.js').ContextMenuCommandInteraction & { client: import('../typings').Client }} interaction The interaction which was created
 	 */
 
 	execute: async (interaction) => {
@@ -20,13 +20,13 @@ module.exports = {
 
 		// Checks if the interaction is a context interaction (to prevent weird bugs)
 
-		if (!interaction.isContextMenu()) return;
+		if (!interaction.isContextMenuCommand()) return;
 
 		/**********************************************************************/
 
 		// Checks if the interaction target was a user
 
-		if (interaction.targetType === "USER") {
+		if (interaction.isUserContextMenuCommand()) {
 			const command = client.contextCommands.get(
 				"USER " + interaction.commandName
 			);
@@ -46,7 +46,7 @@ module.exports = {
 			}
 		}
 		// Checks if the interaction target was a user
-		else if (interaction.targetType === "MESSAGE") {
+		else if (interaction.isMessageContextMenuCommand()) {
 			const command = client.contextCommands.get(
 				"MESSAGE " + interaction.commandName
 			);
