@@ -7,7 +7,12 @@
 // Declare constants which will be used throughout the bot.
 
 const fs = require("fs");
-const { Client, Collection, Intents } = require("discord.js");
+const {
+	Client,
+	Collection,
+	GatewayIntentBits,
+	Partials,
+} = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { token, client_id, test_guild_id } = require("./config.json");
@@ -20,7 +25,8 @@ const { token, client_id, test_guild_id } = require("./config.json");
 // @ts-ignore
 const client = new Client({
 	// Please add all intents you need, more detailed information @ https://ziad87.net/intents/
-	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+	partials: [Partials.Channel],
 });
 
 /**********************************************************************/
@@ -226,7 +232,7 @@ const commandJsonData = [
 			 * to ensure they don't get re-deployed on the next restart.
 			 */
 
-			// Routes.applicationGuildCommands(client_id)
+			// Routes.applicationCommands(client_id)
 
 			{ body: commandJsonData }
 		);
