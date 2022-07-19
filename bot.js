@@ -2,7 +2,7 @@
  * @file Main File of the bot, responsible for registering events, commands, interactions etc.
  * @author Naman Vrati
  * @since 1.0.0
- * @version 3.3.3
+ * @version 3.3.0
  */
 
 // Declare constants which will be used throughout the bot.
