@@ -83,7 +83,7 @@ export interface SlashInteractionCommand {
 	 * @param interaction The interaction that triggered this command.
 	 */
 	execute(
-		interaction: Discord.CommandInteraction & { client: Client }
+		interaction: Discord.ChatInputCommandInteraction & { client: Client }
 	): void | Promise<void>;
 }
 

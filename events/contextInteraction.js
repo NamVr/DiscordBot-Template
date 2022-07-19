@@ -5,11 +5,6 @@
  * @version 3.3.0
  */
 
-const {
-	InteractionType,
-	ApplicationCommandType,
-} = require("discord-api-types/v10");
-
 module.exports = {
 	name: "interactionCreate",
 
@@ -25,19 +20,13 @@ module.exports = {
 
 		// Checks if the interaction is a context interaction (to prevent weird bugs)
 
-		if (interaction.type !== InteractionType.ApplicationCommand) return;
-
-		if (
-			interaction.commandType !== ApplicationCommandType.Message &&
-			interaction.commandType !== ApplicationCommandType.User
-		)
-			return;
+		if (!interaction.isContextMenuCommand()) return;
 
 		/**********************************************************************/
 
 		// Checks if the interaction target was a user
 
-		if (interaction.commandType === ApplicationCommandType.User) {
+		if (interaction.isUserContextMenuCommand()) {
 			const command = client.contextCommands.get(
 				"USER " + interaction.commandName
 			);
@@ -57,7 +46,7 @@ module.exports = {
 			}
 		}
 		// Checks if the interaction target was a user
-		else if (interaction.commandType === ApplicationCommandType.Message) {
+		else if (interaction.isMessageContextMenuCommand()) {
 			const command = client.contextCommands.get(
 				"MESSAGE " + interaction.commandName
 			);
