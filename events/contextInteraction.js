@@ -28,7 +28,7 @@ module.exports = {
 		if (interaction.type !== InteractionType.ApplicationCommand) return;
 
 		if (
-			interaction.commandType !== ApplicationCommandType.Message ||
+			interaction.commandType !== ApplicationCommandType.Message &&
 			interaction.commandType !== ApplicationCommandType.User
 		)
 			return;
