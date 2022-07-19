@@ -2,7 +2,7 @@
  * @file Modal Interaction Handler
  * @author Naman Vrati
  * @since 3.2.0
- * @version 3.2.2
+ * @version 3.3.0
  */
 
 const { InteractionType } = require("discord-api-types/v10");

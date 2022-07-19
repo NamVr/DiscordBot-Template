@@ -2,7 +2,7 @@
  * @file Main trigger handler file.
  * @author Naman Vrati
  * @since 2.0.0
- * @version 3.2.2
+ * @version 3.3.0
  */
 
 module.exports = {
@@ -16,7 +16,6 @@ module.exports = {
 
 	async execute(message) {
 		/**
-		 * @type {String[]}
 		 * @description The Message Content of the received message seperated by spaces (' ') in an array, this excludes prefix and command/alias itself.
 		 */
 
@@ -28,13 +27,18 @@ module.exports = {
 
 		// Checking ALL triggers using every function and breaking out if a trigger was found.
 
-		/** @type {Number} */
-		let check;
+		/**
+		 * Checks if the message has a trigger.
+		 * @type {Boolean}
+		 * */
+
+		let triggered = false;
 
 		message.client.triggers.every((trigger) => {
-			if (check == 1) return false;
+			if (triggered) return false;
+
 			trigger.name.every(async (name) => {
-				if (check == 1) return false;
+				if (triggered) return false;
 
 				// If validated, it will try to execute the trigger.
 
@@ -42,15 +46,18 @@ module.exports = {
 					try {
 						trigger.execute(message, args);
 					} catch (error) {
-						// If checks fail, reply back!
+						// If triggereds fail, reply back!
 
 						console.error(error);
+
 						message.reply({
 							content: "there was an error trying to execute that trigger!",
 						});
 					}
 
-					check = 1;
+					// Set the trigger to be true & return.
+
+					triggered = true;
 					return false;
 				}
 			});
