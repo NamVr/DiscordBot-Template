@@ -5,6 +5,8 @@
  * @version 3.2.2
  */
 
+const { InteractionType } = require("discord-api-types/v10");
+
 module.exports = {
 	name: "interactionCreate",
 
@@ -20,7 +22,7 @@ module.exports = {
 
 		// Checks if the interaction is a modal interaction (to prevent weird bugs)
 
-		if (!interaction.isModalSubmit()) return;
+		if (interaction.type !== InteractionType.ModalSubmit) return;
 
 		const command = client.modalCommands.get(interaction.customId);
 
