@@ -1,6 +1,7 @@
 # Custom
 /config.json
 .vscode/
+.node-version
 
 # Logs
 logs
