@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to NamVr Discord Bot Template 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-v3.2-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-v3.3-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/NamVr/DiscordBot-Template#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -55,7 +55,7 @@ This template comes in with many in-built useful and flexible features, such as
 - This template comes with a dynamic button interaction handler to receive and process button interactions.
 - Buttons can be classified in two category folders.
 
-#### • **[NEW] Dynamic Modals Interaction Handler:**
+#### • **Dynamic Modals Interaction Handler:**
 
 - Easily handle incoming modal submittions using the template handler!
 - Modals can be categorized in different folders.
@@ -64,6 +64,11 @@ This template comes in with many in-built useful and flexible features, such as
 
 - All new addition to discord API is context menus! You can right click a user or message -> Apps to find these options!
 - This template will register all your context menu options and dynamically interact with them! Worth a try.
+
+#### • **[NEW] Dynamic Autocomplete Interaction Request Handler:**
+
+- Easily handle incoming autocomplete requests using the template handler!
+- Perfectly dynamic for all your needs!
 
 #### • **Highly Customizable:**
 
@@ -119,6 +124,6 @@ You can also [sponsor](https://ko-fi.com/namanvrati) the project and get listed 
 ## 📝 License
 
 Copyright © 2021 [Naman Vrati](https://github.com/NamVr).<br />
-This project is [ISC](LICENSE) licensed.
+This project is [Apache-2.0](LICENSE) licensed.
 
 ---
