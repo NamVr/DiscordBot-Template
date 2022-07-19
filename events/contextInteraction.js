@@ -16,7 +16,7 @@ module.exports = {
 	/**
 	 * @description Executes when an interaction is created and handle it.
 	 * @author Naman Vrati
-	 * @param {import('discord.js').ContextMenuInteraction & { client: import('../typings').Client }} interaction The interaction which was created
+	 * @param {import('discord.js').ContextMenuCommandInteraction & { client: import('../typings').Client }} interaction The interaction which was created
 	 */
 
 	execute: async (interaction) => {
