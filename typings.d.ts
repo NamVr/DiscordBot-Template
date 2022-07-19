@@ -196,6 +196,24 @@ export interface TriggerCommand {
 }
 
 /**
+ * Represents a Autocomplete Interaction.
+ */
+export interface AutocompleteInteraction {
+	/**
+	 * The command name of the autocomplete interaction which was interacted with.
+	 */
+	name: string;
+
+	/**
+	 * The interaction executor when it is called by the template handler.
+	 * @param interaction The interaction that triggered this command.
+	 */
+	execute(
+		interaction: Discord.AutocompleteInteraction & { client: Client }
+	): void | Promise<void>;
+}
+
+/**
  * Modified in-built Client that includes support for command/event handlers.
  */
 export interface Client extends Discord.Client {
@@ -238,4 +256,9 @@ export interface Client extends Discord.Client {
 	 * Represents a collection of chat-based Trigger Commands.
 	 */
 	triggers: Discord.Collection<string, TriggerCommand>;
+
+	/**
+	 * Represents a collection of autocomplete interactions.
+	 */
+	autocompleteInteractions: Discord.Collection<string, AutocompleteInteraction>;
 }
