@@ -6,7 +6,8 @@
 	"types": "./typings.d.ts",
 	"main": "bot.js",
 	"scripts": {
-		"start": "node bot.js"
+		"start": "node -e 'require(\"./bot.js\").run()'",
+		"unregisterAllCommands": "node -e 'require(\"./bot.js\").unregisterAllCommands()'"
 	},
 	"repository": {
 		"type": "git",
