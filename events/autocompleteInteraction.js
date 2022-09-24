@@ -2,11 +2,8 @@
  * @file Autocomplete Interaction Handler
  * @author Naman Vrati
  * @since 3.3.0
- * @version 3.3.0
+ * @version 3.3.1
  */
-
-const { InteractionType } = require("discord-api-types/v9");
-
 module.exports = {
 	name: "interactionCreate",
 
@@ -20,10 +17,9 @@ module.exports = {
 		// Deconstructed client from interaction object.
 		const { client } = interaction;
 
-		// Checks if the interaction is a request (to prevent weird bugs)
+		// Checks if the interaction is an autocomplete interaction (to prevent weird bugs)
 
-		if (interaction.type === InteractionType.ApplicationCommandAutocomplete)
-			return;
+		if (!interaction.isAutocomplete()) return;
 
 		// Checks if the request is available in our code.
 
@@ -31,11 +27,11 @@ module.exports = {
 			interaction.commandName
 		);
 
-		// If the interaction is not a request in cache.
+		// If the interaction is not a request in cache return.
 
 		if (!request) return;
 
-		// A try to executes the interaction.
+		// A try to execute the interaction.
 
 		try {
 			await request.execute(interaction);
