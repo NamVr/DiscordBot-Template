@@ -2,7 +2,7 @@
  * @file Autocomplete Interaction Handler
  * @author Naman Vrati
  * @since 3.3.0
- * @version 3.3.0
+ * @version 3.3.1
  */
 module.exports = {
 	name: "interactionCreate",
