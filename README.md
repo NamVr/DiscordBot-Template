@@ -78,17 +78,26 @@ Using the template is so easy and fun, you would know. As the template does not 
 
 > It's yours, you have full control.
 
-## Install
-
-```sh
-npm install
-```
-
 ## Configuration
 
 - Rename [`config-example.json`](https://github.com/NamVr/DiscordBot-Template/blob/master/config-example.json) to `config.json` and fill the token and other values. Extend config.json according to your needs!
 
-## Run your bot
+## Build & run your bot using Docker
+
+You could easily run your bot using docker
+
+```shell
+docker build -t your-bot .
+docker run your-bot
+```
+
+Otherwise, you could also use npm.
+## Install using npm
+```sh
+npm install
+```
+
+## Run your bot using npm
 
 ```sh
 npm start
