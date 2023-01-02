@@ -2,7 +2,7 @@
  * @file Button Interaction Handler
  * @author Naman Vrati
  * @since 3.0.0
- * @version 3.3.0
+ * @version 3.3.1
  */
 
 const { InteractionType, ComponentType } = require("discord-api-types/v10");
@@ -21,10 +21,8 @@ module.exports = {
 		const { client } = interaction;
 
 		// Checks if the interaction is a button interaction (to prevent weird bugs)
-
-		if (interaction.type !== InteractionType.MessageComponent) return;
-
-		if (interaction.componentType !== ComponentType.Button) return;
+		
+		if (!interaction.isButton()) return;
 
 		const command = client.buttonCommands.get(interaction.customId);
 

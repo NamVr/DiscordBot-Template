@@ -2,7 +2,7 @@
  * @file Select Menu Interaction Handler
  * @author Naman Vrati
  * @since 3.0.0
- * @version 3.3.0
+ * @version 3.3.1
  */
 
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
 
 		// Checks if the interaction is a select menu interaction (to prevent weird bugs)
 
-		if (!interaction.isSelectMenu()) return;
+		if (!interaction.isAnySelectMenu()) return;
 
 		const command = client.selectCommands.get(interaction.customId);
 
