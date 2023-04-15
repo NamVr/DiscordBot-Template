@@ -67,6 +67,7 @@ export interface SlashInteractionCommand {
 	/**
 	 * The data of Application Command Interaction (Slash Command).
 	 */
+	cooldown?: number;
 	data: Discord.SlashCommandBuilder;
 	options: Array<
 		| Discord.SlashCommandStringOption
