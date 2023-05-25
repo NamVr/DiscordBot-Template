@@ -16,36 +16,62 @@ module.exports = {
 	 * @param {import('discord.js').ButtonInteraction & { client: import('../typings').Client }} interaction The interaction which was created
 	 */
 
-	async execute(interaction) {
+	execute(interaction) {
 		// Deconstructed client from interaction object.
-		const { client } = interaction;
+		return new Promise(async (resolve, reject) => {
+			const { client } = interaction;
 
-		// Checks if the interaction is a button interaction (to prevent weird bugs)
-		
-		if (!interaction.isButton()) return;
+			// Checks if the interaction is a button interaction (to prevent weird bugs)
 
-		const command = client.buttonCommands.get(interaction.customId);
+			if (!interaction.isButton()) return;
 
-		// If the interaction is not a command in cache, return error message.
-		// You can modify the error message at ./messages/defaultButtonError.js file!
-
-		if (!command) {
-			await require("../messages/defaultButtonError").execute(interaction);
-			return;
-		}
-
-		// A try to execute the interaction.
-
-		try {
-			await command.execute(interaction);
-			return;
-		} catch (err) {
-			console.error(err);
-			await interaction.reply({
-				content: "There was an issue while executing that button!",
-				ephemeral: true,
-			});
-			return;
-		}
+			const commands = client.buttonCommands;
+			const regex = /\[(.*?)\]/g; // Regular expression to match values between square bracket
+			const valueNameRegex = /\[([^\[\]]+)\]/; // Return the value of the arg. ex: [id] => id
+			const commandArgs = interaction.customId.split("-"); // Return all the args of the command
+			const commandName = commandArgs[0];
+			commandArgs.shift();
+			let FoundCommand = false;
+			for (let i = 0; i < commands.size; i++) {
+				const command = commands.at(i);
+				const args = command.id.split("-");
+				const name = args[0];
+				args.shift();
+				if (commandName !== name) continue; // If the checked command is not the same as the executed one, continue.
+				FoundCommand = true;
+				let ArgsObject = {};
+				args.forEach(async (value, index) => {
+					const match = value.match(valueNameRegex)[1];
+					let commandValue;
+					try {
+						commandValue = commandArgs[index].match(valueNameRegex)[1]; // Find the value from the index.
+					} catch (e) {
+						commandValue = null;
+					}
+					ArgsObject = {
+						...ArgsObject,
+						...{ [match]: commandValue },
+					};
+				});
+				interaction.args = ArgsObject;
+				try {
+					await command.execute(interaction);
+					resolve();
+				} catch (err) {
+					console.error(err);
+					await interaction.reply({
+						content: "There was an issue while executing that button!",
+						ephemeral: true,
+					});
+					resolve();
+				}
+			}
+			if (!FoundCommand) {
+				await interaction.reply({
+					content: "The id for the button was not found.", //If the for loop finished without find a match for the id it sends an error message.
+					ephemeral: true,
+				});
+			}
+		});
 	},
 };
