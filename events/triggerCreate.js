@@ -2,11 +2,13 @@
  * @file Main trigger handler file.
  * @author Naman Vrati
  * @since 2.0.0
- * @version 3.3.0
+ * @version 3.3.2
  */
 
+const { Events } = require("discord.js");
+
 module.exports = {
-	name: "messageCreate",
+	name: Events.MessageCreate,
 
 	/**
 	 * @description Executes when a message is created and handle it.

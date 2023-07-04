@@ -2,12 +2,12 @@
  * @file Message Based Commands Handler
  * @author Naman Vrati
  * @since 1.0.0
- * @version 3.3.0
+ * @version 3.3.2
  */
 
 // Declares constants (destructured) to be used in this file.
 
-const { Collection, ChannelType } = require("discord.js");
+const { Collection, ChannelType, Events } = require("discord.js");
 const { prefix, owner } = require("../config.json");
 
 // Prefix regex, we will use to match in mention prefix.
@@ -17,7 +17,7 @@ const escapeRegex = (string) => {
 };
 
 module.exports = {
-	name: "messageCreate",
+	name: Events.MessageCreate,
 
 	/**
 	 * @description Executes when a message is created and handle it.

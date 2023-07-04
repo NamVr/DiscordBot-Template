@@ -2,13 +2,13 @@
  * @file Button Interaction Handler
  * @author Naman Vrati
  * @since 3.0.0
- * @version 3.3.1
+ * @version 3.3.2
  */
 
-const { InteractionType, ComponentType } = require("discord-api-types/v10");
+const { Events } = require("discord.js");
 
 module.exports = {
-	name: "interactionCreate",
+	name: Events.InteractionCreate,
 
 	/**
 	 * @description Executes when an interaction is created and handle it.
@@ -30,22 +30,19 @@ module.exports = {
 		// You can modify the error message at ./messages/defaultButtonError.js file!
 
 		if (!command) {
-			await require("../messages/defaultButtonError").execute(interaction);
-			return;
+			return await require("../messages/defaultButtonError").execute(interaction);
 		}
 
 		// A try to execute the interaction.
 
 		try {
-			await command.execute(interaction);
-			return;
+			return await command.execute(interaction);
 		} catch (err) {
 			console.error(err);
 			await interaction.reply({
 				content: "There was an issue while executing that button!",
 				ephemeral: true,
 			});
-			return;
 		}
 	},
 };
