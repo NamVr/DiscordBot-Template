@@ -1,6 +1,7 @@
 # Custom
 /config.json
 .vscode/
+.idea/
 .node-version
 
 # Logs

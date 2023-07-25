@@ -2,11 +2,13 @@
  * @file Context Interaction Handler
  * @author Krish Garg & Naman Vrati
  * @since 3.0.0
- * @version 3.3.0
+ * @version 3.3.2
  */
 
+const { Events } = require("discord.js");
+
 module.exports = {
-	name: "interactionCreate",
+	name: Events.InteractionCreate,
 
 	/**
 	 * @description Executes when an interaction is created and handle it.
@@ -34,18 +36,16 @@ module.exports = {
 			// A try to execute the interaction.
 
 			try {
-				await command.execute(interaction);
-				return;
+				return await command.execute(interaction);
 			} catch (err) {
 				console.error(err);
 				await interaction.reply({
 					content: "There was an issue while executing that context command!",
 					ephemeral: true,
 				});
-				return;
 			}
 		}
-		// Checks if the interaction target was a user
+		// Checks if the interaction target was a message
 		else if (interaction.isMessageContextMenuCommand()) {
 			const command = client.contextCommands.get(
 				"MESSAGE " + interaction.commandName
@@ -54,15 +54,13 @@ module.exports = {
 			// A try to execute the interaction.
 
 			try {
-				await command.execute(interaction);
-				return;
+				return await command.execute(interaction);
 			} catch (err) {
 				console.error(err);
 				await interaction.reply({
 					content: "There was an issue while executing that context command!",
 					ephemeral: true,
 				});
-				return;
 			}
 		}
 

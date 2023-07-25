@@ -2,10 +2,13 @@
  * @file Autocomplete Interaction Handler
  * @author Naman Vrati
  * @since 3.3.0
- * @version 3.3.1
+ * @version 3.3.2
  */
+
+const { Events } = require("discord.js");
+
 module.exports = {
-	name: "interactionCreate",
+	name: Events.InteractionCreate,
 
 	/**
 	 * @description Executes when an interaction is created and handle it.
@@ -37,8 +40,7 @@ module.exports = {
 			await request.execute(interaction);
 		} catch (err) {
 			console.error(err);
+			return Promise.reject(err);
 		}
-
-		return;
 	},
 };

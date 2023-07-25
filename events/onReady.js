@@ -5,8 +5,10 @@
  * @version 3.2.2
  */
 
+const { Events } = require("discord.js");
+
 module.exports = {
-	name: "ready",
+	name: Events.ClientReady,
 	once: true,
 
 	/**
