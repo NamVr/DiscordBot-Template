@@ -295,6 +295,14 @@ for (const folder of triggerFolders) {
 	}
 }
 
+// Error handling, prevents bot from crashing and going offline.
+process.on("unhandledRejection", (e) => {
+	console.log('An unhandledRejection occured:', e)
+});
+process.on("uncaughtException", (e) => {
+	console.log('An uncaughtException occured:', e)
+});
+
 // Login into your client application with bot's token.
 
 client.login(token);
