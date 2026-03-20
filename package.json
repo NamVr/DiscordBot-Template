@@ -37,7 +37,7 @@
 	},
 	"homepage": "https://github.com/NamVr/DiscordBot-Template#readme",
 	"dependencies": {
-		"discord-api-types": "^0.37.43",
-		"discord.js": "^14.11.0"
+		"discord-api-types": "^0.38.42",
+		"discord.js": "^14.25.1"
 	}
 }

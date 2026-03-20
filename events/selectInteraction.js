@@ -13,7 +13,7 @@ module.exports = {
 	/**
 	 * @description Executes when an interaction is created and handle it.
 	 * @author Naman Vrati
-	 * @param {import('discord.js').SelectMenuInteraction & { client: import('../typings').Client }} interaction The interaction which was created
+	 * @param {import('discord.js').AnySelectMenuInteraction & { client: import('../typings').Client }} interaction The interaction which was created
 	 */
 
 	async execute(interaction) {
